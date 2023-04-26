@@ -1,0 +1,45 @@
+.search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80px;
+   
+  }
+  
+  .search-wrapper {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 800px;
+    background-color: white;
+    border-radius: 8px;
+    padding: 10px;
+   
+  }
+  
+  .search-icon {
+    width: 20px;
+    margin-right: 10px;
+  }
+  
+  .search-bar {
+    border: none;
+    outline: none;
+    width: 100%;
+    font-weight: 400;
+    color: #777;
+    /* background-image: url(../images/Icon\ \(Stroke\).png);
+    background-position: right;
+    background-repeat: no-repeat; */
+  }
+  .cross-icon{
+    height: 11.666667938232422px;
+    width: 11.666666030883789px;
+    left: 4.16668701171875px;
+    top: 4.16668701171875px;
+    border-radius: 0px;
+
+   
+
+    
+  }
