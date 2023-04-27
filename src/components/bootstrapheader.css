@@ -1,0 +1,40 @@
+body{
+    color: white;
+}
+.b_navbar{
+    background-color: #0B223F;
+    /* color: white; */
+}
+.headerwords{
+    color: #F8FAFC !important;
+}
+#cal1{
+    background-color: aqua;
+  }
+  #signupbtn{
+   
+    background-color: #0B223F;
+    border: 1px solid blue;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    color: #F8FAFC;
+
+  }
+.loginbtn{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    color: #F8FAFC;
+    background-color: #009FD1;
+    
+}
+
+.check{
+    border: 1px solid red !important;
+    
+}

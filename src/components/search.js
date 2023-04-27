@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import searchIcon from "../images/Icon (Stroke).png";
-import crossIcon from "../images/crossIcon.png";
+  import crossIcon from "../images/crossIcon.png";
 import "./Search.css";
 
 export default function Search() {
