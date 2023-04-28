@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import searchIcon from "../images/Icon (Stroke).png";
   import crossIcon from "../images/crossIcon.png";
 import "./Search.css";
+import HeaderBootstap from "./mainheader";
 
 export default function Search() {
-  const [showValue, setshowValue] = useState(false);
+  const [showValue, setshowValue] = useState(true);
 
   const setValue = (e) => {
     
@@ -16,9 +17,9 @@ export default function Search() {
     setshowValue(false);
     console.log(showValue)
   };
-  return (
-    <div className="search-container">
-      <div className="search-wrapper">
+  return (<>
+    {showValue && (<div className="search-container">
+      <div  className="search-wrapper">
         <img src={searchIcon} alt="search" className="search-icon" />
         <input
           type="text"
@@ -35,6 +36,12 @@ export default function Search() {
           }}
         />
       </div>
-    </div>
+    </div>)}
+    
+    {!showValue && (<div>
+      <HeaderBootstap/>
+    </div>)}
+    </>
+
   );
 }

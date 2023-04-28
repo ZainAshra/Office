@@ -11,3 +11,21 @@
     background-color: #0B223F;
     background: #0B223F;
 }
+
+.conatiner{
+    border-radius: 2px;
+    border: 2px solid black;
+    color: #0B223F;
+}
+
+.row{
+    width:20%;
+    border: 1px solid blue;
+    position : relative;
+    left:70px;
+
+}
+h1{
+    position : relative;
+    left:70px;
+}
