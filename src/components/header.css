@@ -1,31 +1,104 @@
-#col1{
-    background-color: blue;
-}
-#col2{
-    background-color: green;
-}
-.loginbtn{
-    background-color: #009FD1 !important;
-}
-.header2{
-    background-color: #0B223F;
-    background: #0B223F;
-}
 
-.conatiner{
-    border-radius: 2px;
-    border: 2px solid black;
-    color: #0B223F;
-}
 
-.row{
-    width:20%;
-    border: 1px solid blue;
+/* h1{
     position : relative;
     left:70px;
+} */
 
+.bodydiv {
+  display: inline-flex;
 }
-h1{
-    position : relative;
-    left:70px;
+
+.maindiv {
+  border-radius: 20px;
+  width: 200px;
+  background: #e2e8f0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 20px;
+  /* gap: 10px; */
+  /* position: relative; */
+  width: 320px;
+  margin-left: 40px;
+  margin-top: 30px;
+ 
+}
+
+.categorydiv {
+  /* border: 1px solid black; */
+  margin-left: 80px;
+  margin-top: 30px;
+  border-radius: 20px;
+  width: 320px;
+    background: #e2e8f0;
+    font-family: "Poppins";
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 20px;
+  list-style: none;
+  width: 320px;
+}
+.nestedcategory{
+    margin-top: 30px;
+    border-radius: 20px;
+    width: 320px;
+      background: #e2e8f0;
+      font-family: "Poppins";
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+    list-style: none;
+    width: 320px;
+margin-left: 2px;
+}
+.heading {
+  /* border: 1px solid saddlebrown; */
+  width: 270px;
+  height: 48px;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 32px;
+  color: #0b223f;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  position: relative;
+}
+
+.child {
+  width: 280px;
+  /* border: 1px solid black; */
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 10px;
+  gap: 10px;
+  list-style: none;
+  width: 100px;
+  height: 44px;
+  justify-content: space-between;
+  margin-top: -5px;
+  margin-bottom: -0.5px;
+}
+
+.childlink {
+  width: 100px;
+  height: 24px;
+  color: #305586;
+  font-family: "Poppins";
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+.child:hover {
+  background: #cbd5e1;
+  border-radius: 10px;
+  transition: 3;
 }
