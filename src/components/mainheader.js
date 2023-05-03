@@ -15,49 +15,40 @@ import cart from "../images/cart.png";
 // import { Dropdown, NavLink } from "react-bootstrap";
 import { useEffect, useState } from "react";
 import Search from "./search";
-
+import Header from "./header";
 function HeaderBootstap() {
  
-  const [showDrawer, setShowDrawer] = useState(false);
+  // const [showDrawer, setShowDrawer] = useState(false);
   const [showSearch, setshowSearch] = useState(true);
+  const [showmainmenu,setshowmainmenu]= useState(false)
 
-  function funShowDrawer() {
-    setShowDrawer(true);
-  }
-  function funhideDrawer() {
-    setShowDrawer(false);
-  }
 
   return (
     <>
 
 
 
-      {showDrawer && (
-        <div>
-          <h1 style={{ backgroundColor: "red" }}>zain</h1>
-
-          <div class="container">
-            <div class='row'>
-              <span>text <i> icon</i></span>
-            </div>
-          </div>
-        </div>
-      )}
+     
 
       {!showSearch && <Search />}
 
       {showSearch && (
-        <Navbar className="b_navbar  " expand="lg">
+        <Navbar  className="b_navbar" expand="lg">
           <Container fluid>
             <Navbar.Brand href="#">
               <img
                 src={drawer}
                 alt=""
-                onClick={funShowDrawer}
-                onMouseEnter={funShowDrawer}
-                onMouseLeave={funhideDrawer}
+               
+              onClick={()=>{setshowmainmenu(true)}}
               />{" "}
+
+
+
+
+
+
+
               <img src={companylogo} alt="" />{" "}
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="navbarScroll" />
@@ -133,6 +124,11 @@ function HeaderBootstap() {
           </Container>
         </Navbar>
       )}
+
+
+      {showmainmenu && (
+ <div onMouseLeave={()=>{setshowmainmenu(false)}}> <Header /></div>  
+)}
     </>
   );
 }

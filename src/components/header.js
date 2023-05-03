@@ -16,8 +16,10 @@ export default function Header() {
   const [ChildData, setChildData] = useState([]);
   const [pardata, setPardata] = useState([]);
   const [Subcat, setSubcat] = useState([]);
-const [ShowData,setShowData]= useState(false)
-const[nesteddata,setnesteddata]=useState(false)
+  const [ShowData, setShowData] = useState(false);
+  const [removeChilds, setremoveChilds] = useState(true);
+  const [removeNestedChild, setremoveNestedChild] = useState(true);
+
   const chk = [];
 
   const getData = () => {
@@ -55,18 +57,21 @@ const[nesteddata,setnesteddata]=useState(false)
 
   const foo = (childid) => {
     console.log(childid, "childid");
+    setremoveChilds(true);
 
     const child = data.filter((x, i) => x.parentId === childid);
     console.log(child, "child");
     setChildData(child);
-    setShowData(true)
+    setShowData(true);
   };
 
   const subCategory = (subChild) => {
     const subCategory = data.filter((x, i) => x.parentId === subChild);
-    console.log(subCategory,'subcat');
+    console.log(subCategory, "subcat");
     setSubcat(subCategory);
+    setremoveNestedChild(true);
   };
+
   return (
     <>
       <div className="bodydiv">
@@ -76,6 +81,7 @@ const[nesteddata,setnesteddata]=useState(false)
             return (
               <ul
                 onMouseEnter={() => foo(pardata[index]?.childId)}
+                onMouseLeave={() => setremoveNestedChild(false)}
                 key={index}
                 className="child"
               >
@@ -87,35 +93,47 @@ const[nesteddata,setnesteddata]=useState(false)
             );
           })}
         </div>
-        {ShowData && ChildData[0] && (<div className="categorydiv">
-            
+        {removeChilds && ShowData && ChildData[0] && (
+          <div
+            onMouseLeave={() => setremoveChilds(false)}
+            className="categorydiv"
+          >
             {ChildData?.map((e, i) => {
               return (
-                
-                  <ul className="child" onMouseEnter={() => subCategory(ChildData[i]?.childId)}>
-                    <li className="childlink">
-                      {e?.name}
+                <ul
+                  className="child"
+                  onMouseEnter={() => subCategory(ChildData[i]?.childId)}
+                >
+                  <li className="childlink">{e?.name}</li>
+                  {Subcat[0] && (
+                    <li>
+                      <img src={arrowIcon} alt="" />
                     </li>
-                    <li><img src={arrowIcon} alt="" /></li>
-                  </ul>
-                
+                  )}
+                </ul>
               );
             })}
-          </div>)}
-        
-       {Subcat && Subcat[0] && (
-        <div className="nestedcategory " style={{ color: "royalblue" }}>
-          
-          {Subcat?.map((x, i) => {
-            return <ul className="child"> 
-            <li className="childlink">
-            {x?.name}
-            </li>
-           </ul>;
-          })}
-        </div>
-       )} 
-       
+          </div>
+        )}
+
+        {removeNestedChild && Subcat && Subcat[0] && (
+          <div
+            onMouseEnter={() => {
+              setremoveChilds(true);
+            }}
+            onMouseLeave={() => setremoveNestedChild(false)}
+            className="nestedcategory "
+            style={{ color: "royalblue" }}
+          >
+            {Subcat?.map((x, i) => {
+              return (
+                <ul className="child">
+                  <li className="childlink">{x?.name}</li>
+                </ul>
+              );
+            })}
+          </div>
+        )}
       </div>
     </>
   );
