@@ -7,9 +7,6 @@ import Main from './components/Mainsection';
 function App() {
   return (
     <>
-
-  
-
  <Main/>
     </>
   )

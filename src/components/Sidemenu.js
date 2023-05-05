@@ -11,7 +11,7 @@ import _ from "lodash";
 import arrowIcon from "../images/Icon.png";
 import "./design.css";
 
-export default function Header() {
+export default function Sidemenu() {
   const [data, setData] = useState([]);
   const [ChildData, setChildData] = useState([]);
   const [pardata, setPardata] = useState([]);

@@ -4,16 +4,31 @@ import "./section.css";
 import bagimg from "../images/bag.png";
 import bagimg2 from "../images/bag2.png";
 import "bootstrap/dist/css/bootstrap.min.css";
-import sloganimg from '../images/slogan.png'
-import downarrowimg from '../images/downarrow.png'
-import pstoreimg from "../images/Playstore.png"
-import astoreimg from "../images/App Store.png"
-import Slider from './slider'
+import sloganimg from "../images/slogan.png";
+import downarrowimg from "../images/downarrow.png";
+import pstoreimg from "../images/Playstore.png";
+import astoreimg from "../images/App Store.png";
+import Slider from "./slider";
+import Footer from './footer.jsx'
+
+const cat = ["product","product","product","product","product","product","product","product","product","product"]
+const getRandomColor = () => {
+  const letters = "0123456789ABCDEF";
+  let color = "#";
+  do {
+    for (let i = 0; i < 6; i++) {
+      
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+  } while (color === "#FFFFFF"); // exclude white color
+  return color;
+};
+
 export default function Main() {
   return (
     <>
       <HeaderBootstap />
-
+      {/* after header section */}
       <div className="afterheader">
         <div className="sideimage">
           <div className="imgdiv">
@@ -23,14 +38,22 @@ export default function Main() {
 
         <div className="text">
           <div className="slogan">
-            <img src={sloganimg} alt=""/>
+            <img src={sloganimg} alt="" />
           </div>
           <div className="arowimg">
-            <img src={downarrowimg} alt=''/>
+            <img src={downarrowimg} alt="" />
           </div>
           <div className="btnimg">
-          <div> <a href="https://play.google.com/store/apps/details?id=com.plentys.pk.android&hl=en&gl=US&pli=1"><img className="storeimgbtn" src={pstoreimg} alt=''/></a></div>
-          <div> <img className="storeimgbtn"  src={astoreimg} alt=''/></div>
+            <div>
+              {" "}
+              <a href="https://play.google.com/store/apps/details?id=com.plentys.pk.android&hl=en&gl=US&pli=1">
+                <img className="storeimgbtn" src={pstoreimg} alt="" />
+              </a>
+            </div>
+            <div>
+              {" "}
+              <img className="storeimgbtn" src={astoreimg} alt="" />
+            </div>
           </div>
         </div>
         <div className="sideimage">
@@ -40,9 +63,28 @@ export default function Main() {
         </div>
       </div>
 
-<div className="slider">
-      <Slider/>
+
+
+      {/* //Slider */}
+      <div className="slider">
+        <Slider />
       </div>
+
+
+
+      {/* all Catgories cards */}
+      <div>
+        <h1 className="catheading">Shop Our Top Catgories</h1>
+      </div>
+      <div className="catcardsparent" style={{color:'blue'}}> 
+{cat.map((e,i)=>{
+  return(
+    <div className="catcarddiv" style={{backgroundColor: getRandomColor(),margin:"10px"}}  key={i}><h3>{e}</h3></div>
+  )
+})}
+      
+      </div>
+      <Footer/>
     </>
   );
 }

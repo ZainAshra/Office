@@ -7,19 +7,16 @@
   width: 100%;
   row-gap: 20px;
   height: 250px;
-
 }
 .sideimage {
   width: 25%;
-  border: 1px solid black;
 }
 .text {
   width: 50%;
- 
+
   align-items: center;
   text-align: center;
   align-self: center;
-
 }
 .imgdiv {
   align-items: center;
@@ -29,30 +26,64 @@
 .img {
   width: auto;
   opacity: 0.8;
-  margin-top: 7px; 
+  margin-top: 7px;
 }
 
-
-.btnimg{
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    
+.btnimg {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
 }
-.arowimg{
-   margin-top: 30px;
- margin-bottom: 30px;
-
+.arowimg {
+  margin-top: 30px;
+  margin-bottom: 30px;
 }
-.storeimgbtn:hover{
-     cursor: pointer;
+.storeimgbtn:hover {
+  cursor: pointer;
 }
-.storeimgbtn{
-    height: 39.1px;
-width: 110px;
-
+.storeimgbtn {
+  height: 39.1px;
+  width: 110px;
 }
-.slider{
+.slider {
   position: relative;
   top: -50px;
+}
+
+.catheading {
+  margin-left: 50px;
+  color: #0b223f;
+  font-family: Poppins;
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 36px;
+  letter-spacing: 0em;
+  text-align: left;
+  margin-top: -50px;
+}
+.catcardsparent {
+  overflow: auto;
+  white-space: nowrap;
+  align-items: center;
+  margin-left: 50px;
+  margin-right: 50px;
+  text-align: center;
+  box-shadow: 0 8px 6px -6px black !important;}
+.catcarddiv {
+
+  width: 140px;
+  justify-content: space-around;
+  height: 190px;
+  margin: 2px;
+  display: inline-block;
+  text-align: center;
+  border-radius: 9px;
+}
+
+
+.catcarddiv h3 {
+  align-items: center;
+  text-align: center;
+  margin-top: 40px;
+  font-family: Poppins;
 }

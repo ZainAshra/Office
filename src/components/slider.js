@@ -5,7 +5,6 @@ import sliderimg1 from '../images/sliderimg1.png'
 function Slider() {
   return (
 
-
     <div className='main'>
     <Carousel variant="dark" controls={false}>
       <Carousel.Item>

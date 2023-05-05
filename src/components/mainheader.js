@@ -15,7 +15,8 @@ import cart from "../images/cart.png";
 // import { Dropdown, NavLink } from "react-bootstrap";
 import { useEffect, useState } from "react";
 import Search from "./search";
-import Header from "./header";
+// import Header from "./Sidemenu";
+import Sidemenu from "./Sidemenu";
 function HeaderBootstap() {
  
   // const [showDrawer, setShowDrawer] = useState(false);
@@ -25,11 +26,6 @@ function HeaderBootstap() {
 
   return (
     <>
-
-
-
-     
-
       {!showSearch && <Search />}
 
       {showSearch && (
@@ -42,13 +38,6 @@ function HeaderBootstap() {
                
               onClick={()=>{setshowmainmenu(true)}}
               />{" "}
-
-
-
-
-
-
-
               <img src={companylogo} alt="" />{" "}
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="navbarScroll" />
@@ -127,7 +116,7 @@ function HeaderBootstap() {
 
 
       {showmainmenu && (
- <div onMouseLeave={()=>{setshowmainmenu(false)}}> <Header /></div>  
+ <div onMouseLeave={()=>{setshowmainmenu(false)}}> <Sidemenu /></div>  
 )}
     </>
   );
