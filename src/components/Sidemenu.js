@@ -1,11 +1,6 @@
 import React, { useEffect, useState } from "react";
-import Search from "./search";
 import "bootstrap/dist/css/bootstrap.min.css";
-// import Search from './search'
-import drawer from "../images/drawer.png";
-// import companylogo from "../images/company_logo.png";
 import "./header.css";
-// import rightIcon from "../images/Icon.png";
 import axios from "axios";
 import _ from "lodash";
 import arrowIcon from "../images/Icon.png";

@@ -1,48 +1,73 @@
 import Carousel from "react-bootstrap/Carousel";
-import sliderimg1 from "../images/sliderimg1.png";
 import fetchData from "../redux/actions/index";
 import { useDispatch, useSelector } from "react-redux";
-import {useEffect} from "react";
-import React from 'react';
-
+import { useEffect, useState } from "react";
+import React from "react";
+import _ from "lodash";
 
 function Slider() {
+  const [isMobile, setisMobile] = useState(false);
   const bannerImagesArray = useSelector(({ photos }) => photos);
-
+  const groupBannerData = _.groupBy(bannerImagesArray, "mobile");
+  const mobileBannersData = groupBannerData[1];
+  const webBannersData = groupBannerData[0];
+  console.log(mobileBannersData, "mobile");
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchData());
   }, [dispatch]);
-  console.log(bannerImagesArray[0]?.imageUrl);
+  // console.log(bannerImagesArray[0]?.imageUrl);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setisMobile(window.innerWidth < 768);
+      console.log(window.innerWidth);
+    };
+    window.addEventListener("resize", handleResize);
+    handleResize();
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   return (
     <div className="main">
-
-   
-      <Carousel variant="dark" controls={false}>
-      {bannerImagesArray?.map((e,i)=>{
-      if(e.mobile === 1){
-      return(
-        <Carousel.Item>
-          <img className="d-block w-100" src={e?.imageUrl} alt="" />
-        </Carousel.Item>
-      )
-    }
-    }
-    )}
-
-    
-    {bannerImagesArray?.map((e,i)=>{
-      if(e.mobile === 0){
-      return(
-        <Carousel.Item>
-          <img className="d-block w-100" src={e?.imageUrl} alt="" />
-        </Carousel.Item>
-      )
-    }
-    }
-    )}
-        
+      <Carousel style={{ padding: "6rem" }} variant="dark">
+        {isMobile
+          ? mobileBannersData?.map((item) => {
+              return (
+                <Carousel.Item>
+                  <img
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "contain",
+                    }}
+                    className="d-block w-100"
+                    src={item?.imageUrl}
+                    alt=""
+                  />
+                </Carousel.Item>
+              );
+            })
+          : webBannersData?.map((item) => {
+              return (
+                <Carousel.Item>
+                  <img
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "contain",
+                    }}
+                    src={item?.imageUrl}
+                    alt=""
+                  />
+                </Carousel.Item>
+              );
+            })}
       </Carousel>
+      <br />
     </div>
   );
 }
