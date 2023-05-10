@@ -1,5 +1,5 @@
 import Carousel from "react-bootstrap/Carousel";
-import fetchData from "../redux/actions/index";
+import {fetchData} from "../redux/actions/index";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import React from "react";
