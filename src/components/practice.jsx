@@ -1,23 +1,37 @@
 import React, { useEffect } from "react";
-import { categoriesData } from "../redux/actions";
+import { cardsData, categoriesData } from "../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
-import { homeandlifestyle } from "../redux/actions";
+import _ from "lodash"
 export const Practice = () => {
   const dispatch = useDispatch();
-  const categoriesdatafromreducer = useSelector((state) => state.categories);
-  const homeandlifestyledatafromreducer = useSelector(
-    (state) => state?.homeandlifestyle
-  );
+  const categoriesdatafromstore = useSelector((state) => state.categories);
+ 
+  const allcardscategoriesdatafromstore = useSelector((state)=>state.allcardsData)
+  console.log(allcardscategoriesdatafromstore.WHOLESALE)
+  let obj = Object.keys(allcardscategoriesdatafromstore)
+  console.log(obj)
 
   useEffect(() => {
-    dispatch(categoriesData({ type: "CATEGORIES", payload: [1, 2, 3, 4] }));
+    dispatch(categoriesData({ type: "CATEGORIES", payload: [] }));
   }, [categoriesData]);
-  console.log(categoriesdatafromreducer);
+  console.log(categoriesdatafromstore);
 
-  // home and life style
-  useEffect(() => {
-    dispatch(homeandlifestyle({ type: "HOMEANDLIFESTYLE", payload: [1, 2] }));
-  }, [homeandlifestyle]);
-  console.log(homeandlifestyledatafromreducer?.homeandlifestyle?.data);
+
+ 
+
+
+
+  useEffect(()=>{
+
+  const promise1=  dispatch(cardsData(1955,"WHOLESALE"))
+  const promise2=  dispatch(cardsData(1949,"PLENTYSMART"))
+  const promise3=  dispatch(cardsData(5,"BEAUTYANDGROOMING"))
+
+    Promise.all([promise1,promise2,promise3])
+
+  },[])
+
+
+
   return <></>;
 };

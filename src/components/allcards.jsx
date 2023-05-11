@@ -9,7 +9,8 @@ import "./allcards.css";
 const Allcards = () => {
   const dispatch = useDispatch();
   const categoriesdatafromreducer = useSelector((state) => state.categories);
-
+const allcardscategoriesdatafromstore = useSelector((state)=>state.Allcards)
+console.log(allcardscategoriesdatafromstore)
 //all categoriesapi
   useEffect(() => {
     
