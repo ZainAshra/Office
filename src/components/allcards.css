@@ -13,13 +13,21 @@ line-height: 24px;
     border-radius: 8px;
     width: 15rem;
     text-align: center;
-    align-content: center;
+    align-content: center; 
+    padding: 1px;
     
 }
 .saversdiv :hover{
     cursor: pointer;
     padding: 2px;
 }
-p{
+p ,h1{
     color: black;
+}
+body{
+    color: black;
+}
+
+.cards{
+    
 }

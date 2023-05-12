@@ -8,10 +8,11 @@ import _ from "lodash";
 function Slider() {
   const [isMobile, setisMobile] = useState(false);
   const bannerImagesArray = useSelector(({ photos }) => photos);
+  // console.log(bannerImagesArray)
   const groupBannerData = _.groupBy(bannerImagesArray, "mobile");
   const mobileBannersData = groupBannerData[1];
   const webBannersData = groupBannerData[0];
-  console.log(mobileBannersData, "mobile");
+  // console.log(mobileBannersData, "mobile");
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchData());
@@ -21,7 +22,7 @@ function Slider() {
   useEffect(() => {
     const handleResize = () => {
       setisMobile(window.innerWidth < 768);
-      console.log(window.innerWidth);
+      // console.log(window.innerWidth);
     };
     window.addEventListener("resize", handleResize);
     handleResize();

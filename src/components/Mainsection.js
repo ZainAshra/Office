@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import HeaderBootstap from "./mainheader";
 import "./section.css";
 import bagimg from "../images/bag.png";
@@ -9,15 +9,31 @@ import downarrowimg from "../images/downarrow.png";
 import pstoreimg from "../images/Playstore.png";
 import astoreimg from "../images/App Store.png";
 import Slider from "./slider";
-import Footer from './footer.jsx'
+import Footer from "./footer.jsx";
+import Allcards from "./allcards";
+import { useDispatch, useSelector } from "react-redux";
+import _ from "lodash";
+import { allcardsData } from "../redux/reducers/allcardsDataReducer";
+import { cardsData } from "../redux/actions";
 
-const cat = ["product","product","product","product","product","product","product","product","product","product"]
+const cat = [
+  "product",
+  "product",
+  "product",
+  "product",
+  "product",
+  "product",
+  "product",
+  "product",
+  "product",
+  "product",
+];
+
 const getRandomColor = () => {
   const letters = "0123456789ABCDEF";
   let color = "#";
   do {
     for (let i = 0; i < 6; i++) {
-      
       color += letters[Math.floor(Math.random() * 16)];
     }
   } while (color === "#FFFFFF"); // exclude white color
@@ -25,6 +41,24 @@ const getRandomColor = () => {
 };
 
 export default function Main() {
+  const dispatch = useDispatch();
+
+  const allCardsDataObject = useSelector((state) => state.allcardsData);
+
+  // const arr = _.map(_.toPairs(allCardsDataObject), ([key, value]) => ({
+  //   key,
+  //   value,
+  // }));
+
+  
+  useEffect(() => {
+    const promise1 = dispatch(cardsData(1955, "WHOLESALE"));
+    const promise2 = dispatch(cardsData(1949, "PLENTYSMART"));
+    const promise3 = dispatch(cardsData(5, "BEAUTYANDGROOMING"));
+
+    Promise.all([promise1, promise2, promise3]);
+  }, []);
+
   return (
     <>
       <HeaderBootstap />
@@ -63,28 +97,52 @@ export default function Main() {
         </div>
       </div>
 
-
-
-      {/* //Slider */}
+      {/* //Slider/courasel */}
       <div className="slider">
         <Slider />
       </div>
-
-
 
       {/* all Catgories cards */}
       <div>
         <h1 className="catheading">Shop Our Top Catgories</h1>
       </div>
-      <div className="catcardsparent" style={{color:'blue'}}> 
-{cat.map((e,i)=>{
-  return(
-    <div className="catcarddiv" style={{backgroundColor: getRandomColor(),margin:"10px"}}  key={i}><h3>{e}</h3></div>
-  )
-})}
-      
+
+      <div className="catcardsparent" style={{ color: "blue" }}>
+        {cat.map((e, i) => {
+          return (
+            <div
+              className="catcarddiv"
+              style={{ backgroundColor: getRandomColor(), margin: "10px" }}
+              key={i}
+            >
+              <h3>{e}</h3>
+            </div>
+          );
+        })}
       </div>
-      <Footer/>
+
+
+        
+      {/* allcards */}
+      {Object.keys(allCardsDataObject).map((dt) => {
+        return (
+          <div>
+            <h1>{dt}</h1>
+            {allCardsDataObject[dt].map((data) => {
+              return (
+                <Allcards
+                  style={{ display: "inline-block" }}
+                  title={data.title}
+                  image={data.imageUrl}
+                  minPrice={data.minPrice}
+                />
+              );
+            })}
+          </div>
+        );
+      })}
+
+      <Footer />
     </>
   );
 }

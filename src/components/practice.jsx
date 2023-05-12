@@ -11,10 +11,10 @@ export const Practice = () => {
   let obj = Object.keys(allcardscategoriesdatafromstore)
   console.log(obj)
 
-  useEffect(() => {
-    dispatch(categoriesData({ type: "CATEGORIES", payload: [] }));
-  }, [categoriesData]);
-  console.log(categoriesdatafromstore);
+  // useEffect(() => {
+  //   dispatch(categoriesData({ type: "CATEGORIES", payload: [] }));
+  // }, [categoriesData]);
+  // console.log(categoriesdatafromstore);
 
 
  
@@ -33,5 +33,9 @@ export const Practice = () => {
 
 
 
-  return <></>;
+  return <>
+
+
+
+  </>;
 };

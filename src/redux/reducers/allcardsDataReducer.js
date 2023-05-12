@@ -10,10 +10,10 @@ export const allcardsData = (state = initialstate,action)=>{
             return {...state,
                 PLENTYSMART:action.payload 
             }
-        case "":
-                return {...state,
-                    PLENTYSMART:action.payload 
-                }       
+        // case "":
+        //         return {...state,
+        //             PLENTYSMART:action.payload 
+        //         }       
         case "WHOLESALE":
           return { ...state,
             WHOLESALE : action.payload 

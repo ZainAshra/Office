@@ -12,10 +12,10 @@ import { Practice } from './components/practice';
 function App() {
   return (
     <>
- {/* <Main/> */}
-{/* <Notfound/>
-<Allcards/> */}
-<Practice/>
+ <Main/>
+{/* <Notfound/> */}
+<Allcards/>
+{/* <Practice/> */}
 
    </>
   )
