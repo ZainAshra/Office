@@ -1,82 +1,55 @@
 // this component will add after corrasole
+import { Button, Card } from "react-bootstrap";
 import "./allcards.css";
-import React, { useEffect } from "react";
-import { cardsData, categoriesData } from "../redux/actions";
-import { useDispatch, useSelector } from "react-redux";
-import _ from "lodash";
-import productimg from "..//images/productimg.png";
-export const Allcards = (props) => {
-  // const categoriesdatafromstore = useSelector((state) => state.categories);
+import React from "react";
+import sampleimg from "..//images/productimg.png"
 
-  // useEffect(() => {
-  //   dispatch(categoriesData({ type: "CATEGORIES", payload: [] }));
-  // }, [categoriesData]);
+export const Allcards = (props) => {
+ 
   console.log("HHHHHHHHHHHHHH");
 
   return (
-    // <div>
-    //   <div
-    //     className="allcardmaindiv"
-    //     style={{
-    //       overflow: "auto",
-    //       whiteSpace: "nowrap",
-    //       border: "2pxsolidred",
-    //     }}
-    //   >
-    //     {/* {console.log(props.minprice,"props")} */}
+   
 
-    //     <div
-    //       style={{
-    //         backgroundImage: `url(${props.image})`,
-    //         backgroundSize: "cover",
-    //         backgroundRepeat: "no-repeat",
-    //         border: "2px solid #E2E8F0",
-    //         borderRradius: "20px",
-    //         width: "15rem",
-    //         height: "15rem",
-    //       }}
-    //     ></div>
-    //     <div className="saversdiv" style={{ background: "#009FD1" }}>
-    //       <p className="container ">save rs 99</p>
-    //     </div>
-    //     <p>{props.title}</p>
 
-    //     <div style={{ display: "flex" }}>
-    //       <div style={{}}>
-    //         <button>Add to cart</button>
-    //       </div>
-    //       <div style={{}}>
-    //         price
-    //         <br />
-    //         {props.minPrice}
-    //       </div>
-    //     </div>
-    //   </div>
-    // </div>
 
-    <div className="conatiner">
-      <div className="cards"  style={{width:"50px"}}>
-        <div className="raw" style={{width:"90px"}}>
-          <img style={{width:"150px"}} src={props.image} alt="cardimage" />
-        </div>
-        <div className="raw">
-          <button value={``}>{`Save Rs. 99`}</button>
-        </div>
 
-        <div className="raw">
-          <h3>{props.title}</h3>
-        </div>
-        <div className="row">
-          <div className="col">
-            {" "}
-            <button value={``}>{`Add to Cart`}</button>
-          </div>
-          <div className="col">
-            <span>{props.minPrice}</span>{" "}
-          </div>
-        </div>
-      </div>
+<>
+{/* <h1>
+  cards
+</h1>
+<div className="cards container" >
+<div className="card">
+
+    <Card style={{height:"150px",width:"150px"}}>
+      <Card.Img src={sampleimg}></Card.Img>
+    </Card>
+   
     </div>
+    
+    </div> */}
+
+
+
+
+
+
+    <Card  style={{ width: '15rem',hight: "10remt",border: "none"}} >
+    <Card.Img style={{border:"1px solid lightgrey",borderRadius:"5px"}} variant="top" src={props.image} />
+    <Card.Body>
+      <Card.Title>{props.brand}</Card.Title>
+      <Card.Text>
+      {props.title}
+      </Card.Text>
+      <Button variant="primary">Add To Cart</Button>
+      
+    </Card.Body>
+  </Card>
+  
+ 
+  </>
+
+    
   );
 };
 

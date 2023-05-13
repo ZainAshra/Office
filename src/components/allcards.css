@@ -1,33 +1,24 @@
-.savers p{
+.fancyscroll::-webkit-scrollbar {
+    width: 180px;
+    height: 3px;
+    cursor: pointer; /* Adjust the width of the scrollbar */
+  }
   
-font-family: Poppins;
-font-size: 16px;
-font-weight: 600;
-line-height: 24px;
-
-
-}
-
-.saversdiv{
-    margin-top: 3px;
-    border-radius: 8px;
-    width: 15rem;
-    text-align: center;
-    align-content: center; 
-    padding: 1px;
-    
-}
-.saversdiv :hover{
+  .fancyscroll::-webkit-scrollbar-thumb {
+    background-color:rgb(55, 55, 50);
     cursor: pointer;
-    padding: 2px;
-}
-p ,h1{
-    color: black;
-}
-body{
-    color: black;
-}
+    border-radius: 1px; /* Adjust the border-radius for a rounded appearance */
+  }
 
-.cards{
-    
-}
+  .fancyscroll::-webkit-scrollbar-track {
+    background-color: #ded6d6; /* Color of the track */
+  }
+  .fancyscroll::-webkit-scrollbar-thumb:hover {
+    background-color: #7e7979;
+     cursor: pointer;
+     /* Color of the scrollbar thumb on hover */
+  }
+  
+  .fancyscroll::-webkit-scrollbar-thumb:active {
+    background-color: #333; /* Color of the scrollbar thumb when clicked */
+  }

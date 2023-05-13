@@ -15,6 +15,9 @@ import { useDispatch, useSelector } from "react-redux";
 import _ from "lodash";
 import { allcardsData } from "../redux/reducers/allcardsDataReducer";
 import { cardsData } from "../redux/actions";
+import styles from "./allcards.css";
+import { Col, Row } from "react-bootstrap";
+import { Height } from "@mui/icons-material";
 
 const cat = [
   "product",
@@ -50,7 +53,6 @@ export default function Main() {
   //   value,
   // }));
 
-  
   useEffect(() => {
     const promise1 = dispatch(cardsData(1955, "WHOLESALE"));
     const promise2 = dispatch(cardsData(1949, "PLENTYSMART"));
@@ -121,23 +123,48 @@ export default function Main() {
         })}
       </div>
 
-
-        
       {/* allcards */}
       {Object.keys(allCardsDataObject).map((dt) => {
         return (
           <div>
-            <h1>{dt}</h1>
-            {allCardsDataObject[dt].map((data) => {
-              return (
-                <Allcards
-                  style={{ display: "inline-block" }}
-                  title={data.title}
-                  image={data.imageUrl}
-                  minPrice={data.minPrice}
-                />
-              );
-            })}
+            <h1
+              style={{
+                color: "black",
+              }}
+            >
+              {dt}
+            </h1>
+            <div
+              className="fancyscroll"
+              style={{
+                color: "black",
+                display: "flex",
+                flexDirection: "row",
+                gap: "20px",
+                border: "1px solid black",
+                overflow: "auto",
+                marginBottom: "10px",
+                overflowX: "scroll",
+              }}
+            >
+              {allCardsDataObject[dt].map((data) => {
+                return (
+                  <div
+                    style={{
+                      padding: "3px",
+                      margin: "2px",
+                    }}
+                  >
+                    <Allcards
+                      title={data.title}
+                      image={data.imageUrl}
+                      minPrice={data.minPrice}
+                      brand={data.brand}
+                    />
+                  </div>
+                );
+              })}
+            </div>
           </div>
         );
       })}
