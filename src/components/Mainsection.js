@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import HeaderBootstap from "./mainheader";
 import "./section.css";
 import bagimg from "../images/bag.png";
@@ -43,7 +43,10 @@ const getRandomColor = () => {
   return color;
 };
 
-export default function Main() {
+export default function Main(newcount) {
+ 
+
+  
   const dispatch = useDispatch();
 
   const allCardsDataObject = useSelector((state) => state.allcardsData);
@@ -156,6 +159,7 @@ export default function Main() {
                     }}
                   >
                     <Allcards
+                      alldata={data}
                       title={data.title}
                       image={data.imageUrl}
                       minPrice={data.minPrice}

@@ -34,26 +34,7 @@ export const categoriesData = () => {
   };
 };
 
-//home and life style
-// export const homeandlifestyle = () => {
-//   return (dispatch) => {
-//     axios
-//       .get(
-//         "https://api.plentys.pk/api/v1/public/product/search?title=/&categoryId=4&minPrice=4&maxPrice=&productIds=&storeId=&brandId=&rating=&conditionId=&discountValue=&promotionId=&lookupShippingTypeId=&lookupAttributeValueIds=&freshBaazar=&exactDiscount=&cityId=1&orderBy=stockDesc&limit=60&page=1"
-//       )
-//       .then((response) => {
-//         console.log(response.data);
-//         dispatch({
-//           type: "HOMEANDLIFESTYLE",
-//           payload: response.data,
-//         });
-//       })
-//       .catch((error) => {
-//         console.log(error);
-//       });
-//   };
-// };
-// export default fetchData;
+
 
 export const cardsData = (id, actionName) => {
   try {
@@ -71,3 +52,15 @@ export const cardsData = (id, actionName) => {
     console.log(error);
   }
 };
+
+
+
+export const  addtocartdata = (type,data)=>{
+    // console.log(data,"gggggg")
+  return({
+    type: type,
+    payload: data,
+    
+  });
+
+}

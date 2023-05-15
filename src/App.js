@@ -8,6 +8,7 @@ import { Banner } from './redux/banner';
 import Notfound from './components/notfound';
 import Allcards from './components/allcards';
 import { Practice } from './components/practice';
+import ShoppingCart from './components/shoppingcart';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
 {/* <Notfound/> */}
 <Allcards/>
 {/* <Practice/> */}
+ <ShoppingCart/>
 
    </>
   )
