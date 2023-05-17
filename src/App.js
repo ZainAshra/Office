@@ -9,15 +9,37 @@ import Notfound from './components/notfound';
 import Allcards from './components/allcards';
 import { Practice } from './components/practice';
 import ShoppingCart from './components/shoppingcart';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+} from "react-router-dom";
+import ProductDescription from './components/productDescription';
+
+
 
 function App() {
   return (
     <>
- <Main/>
+
 {/* <Notfound/> */}
-<Allcards/>
+{/* <Allcards/> */}
 {/* <Practice/> */}
- <ShoppingCart/>
+ 
+
+ <ProductDescription/>
+ {/* <Router>
+ <Switch>
+          <Route path="/shoppingCart">
+          <ShoppingCart/>
+          </Route>
+          
+          <Route path="/">
+          <Main/>
+          </Route>
+        </Switch>
+</Router> */}
 
    </>
   )

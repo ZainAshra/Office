@@ -1,4 +1,19 @@
 import axios from "axios";
+import { CART_SET_STATE_VALUE_BY_NAME } from "../reducers/addToCartType";
+
+export const cartSetStateValueByName = (name, value) => {
+  return (dispatch, getState) => {
+    dispatch({
+      type: CART_SET_STATE_VALUE_BY_NAME,
+      name,
+      value,
+    });
+    return Promise.resolve(
+      getState().AddToCartReducder,
+      getState().AddToCartReducder[name]
+    );
+  };
+};
 
 export const fetchData = () => {
   return (dispatch) => {
@@ -7,7 +22,6 @@ export const fetchData = () => {
         "https://api.plentys.pk/api/v1/public/banner?cityId=1%20Request%20Method:%20GET"
       )
       .then((response) => {
-        console.log(response.data.data);
         dispatch({ type: "BANNER", payload: response.data.data });
       })
       .catch((error) => {
@@ -34,8 +48,6 @@ export const categoriesData = () => {
   };
 };
 
-
-
 export const cardsData = (id, actionName) => {
   try {
     return async (dispatch) => {
@@ -53,14 +65,21 @@ export const cardsData = (id, actionName) => {
   }
 };
 
+export const addtocartdata = (type, data) => {
+  // console.log(data,"gggggg")
+  return (dispatch) => {
+    dispatch({
+      type: type,
+      payload: data,
+    });
+  };
+};
 
-
-export const  addtocartdata = (type,data)=>{
-    // console.log(data,"gggggg")
-  return({
-    type: type,
-    payload: data,
-    
-  });
-
+export const cardsCount = (type,count)=>{
+  return(dispatch)=>{
+    dispatch({
+      type:type,
+      payload:count
+    })
+  }
 }

@@ -1,0 +1,1 @@
+export const CART_SET_STATE_VALUE_BY_NAME = 'cartSetStateValueByName';

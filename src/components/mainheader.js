@@ -5,38 +5,60 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 // import {Button, Badge} from 'react-bootstrap';
+import { FaShoppingCart } from "react-icons/fa";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./bootstrapheader.css";
 import drawer from "../images/drawer.png";
 import companylogo from "../images/company_logo.png";
 import searchIcon from "../images/search.png";
 import whastappicon from "../images/whastapp.png";
+
 import cart from "../images/cart.png";
 // import { Dropdown, NavLink } from "react-bootstrap";
 import { useEffect, useState } from "react";
 import Search from "./search";
+import { Link } from "react-router-dom";
 // import Header from "./Sidemenu";
 import Sidemenu from "./Sidemenu";
-function HeaderBootstap() {
- 
+// import { Badge } from "react-bootstrap";
+import { useSelector } from "react-redux";
+
+import Badge from "@mui/material/Badge";
+import { styled } from "@mui/material/styles";
+import IconButton from "@mui/material/IconButton";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+
+const StyledBadge = styled(Badge)(({ theme }) => ({
+  "& .MuiBadge-badge": {
+    right: -3,
+    top: 13,
+    border: `1px solid ${theme.palette.background.paper}`,
+    padding: "0 4px",
+  },
+}));
+
+function HeaderBootstap(props) {
+  var cardsCount = useSelector((state) => state.AddToCartReducder);
+  var cardsCount = cardsCount.length;
+  console.log(cardsCount, "count");
   // const [showDrawer, setShowDrawer] = useState(false);
   const [showSearch, setshowSearch] = useState(true);
-  const [showmainmenu,setshowmainmenu]= useState(false)
-
+  const [showmainmenu, setshowmainmenu] = useState(false);
 
   return (
     <>
       {!showSearch && <Search />}
 
       {showSearch && (
-        <Navbar  className="b_navbar" expand="lg">
+        <Navbar className="b_navbar" expand="lg">
           <Container fluid>
             <Navbar.Brand href="#">
               <img
                 src={drawer}
                 alt=""
-               
-              onClick={()=>{setshowmainmenu(true)}}
+                onClick={() => {
+                  setshowmainmenu(true);
+                }}
               />{" "}
               <img src={companylogo} alt="" />{" "}
             </Navbar.Brand>
@@ -86,10 +108,24 @@ function HeaderBootstap() {
                       </a>
                     </div>
                     <div class="col">
-                      <a href="">
-                        {" "}
-                        <img src={cart} alt="" />
-                      </a>
+                      <Link to="/shoppingCart" className="cart-link">
+                        {/* {cardsCount > 0 && (
+                          <Badge pill bg="primary" className="cart-badge">
+                            <span className="count">{cardsCount}</span>
+                          </Badge>
+                        )}
+
+                        <FaShoppingCart size={24} className="cart-icon" /> */}
+
+                        <IconButton color="info" aria-label="cart">
+                          <StyledBadge
+                            badgeContent={cardsCount}
+                            color="secondary"
+                          >
+                            <ShoppingCartIcon />
+                          </StyledBadge>
+                        </IconButton>
+                      </Link>
                     </div>
 
                     <div class="col">
@@ -114,10 +150,16 @@ function HeaderBootstap() {
         </Navbar>
       )}
 
-
       {showmainmenu && (
- <div onMouseLeave={()=>{setshowmainmenu(false)}}> <Sidemenu /></div>  
-)}
+        <div
+          onMouseLeave={() => {
+            setshowmainmenu(false);
+          }}
+        >
+          {" "}
+          <Sidemenu />
+        </div>
+      )}
     </>
   );
 }

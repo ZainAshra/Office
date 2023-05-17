@@ -15,9 +15,6 @@ import { useDispatch, useSelector } from "react-redux";
 import _ from "lodash";
 import { allcardsData } from "../redux/reducers/allcardsDataReducer";
 import { cardsData } from "../redux/actions";
-import styles from "./allcards.css";
-import { Col, Row } from "react-bootstrap";
-import { Height } from "@mui/icons-material";
 
 const cat = [
   "product",
