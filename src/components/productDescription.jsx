@@ -2,13 +2,13 @@ import React from "react";
 import HeaderBootstap from "./mainheader";
 import { Router } from "react-router-dom/cjs/react-router-dom.min";
 import image from "../images/productimg.png";
-import { Carousel } from "bootstrap";
-import {AiOutlineHeart } from "react-icons/bs";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import { Rating, TextField, Typography } from "@mui/material";
+import fileupload from "..//images/fileupload.PNG"
 const ProductDescription = () => {
   return (
     <>
-      <h1 className="text-3xl font-bold underline bg-primary">Hello world!</h1>
-
       <div className="grid md:grid-cols-2 sm:grid-cols-1 place-content-center  mt-6 mx-auto gap-5 ">
         {/* /image div */}
         <div className="grid place-content-center   ">
@@ -124,15 +124,15 @@ const ProductDescription = () => {
             </div>
           </div>
 
-          <div className="flex flex-raw border">
-            <div className="w-70 border-2">
+          <div className="flex flex-raw">
+            <div className="col-9 ">
               <button
                 type="button"
                 class=" w-70 h-10 text-gray-900 mt-2 bg-[#F7BE38] hover:bg-[#F7BE38]/90 focus:ring-4 focus:outline-none focus:ring-[#F7BE38]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#F7BE38]/50 mr-2 mb-2"
               >
                 {/* <svg class="w-4 h-4 mr-2 -ml-1" aria-hidden="true" focusable="false" data-prefix="fab"  role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="currentColor" d="M111.4 295.9c-3.5 19.2-17.4 108.7-21.5 134-.3 1.8-1 2.5-3 2.5H12.3c-7.6 0-13.1-6.6-12.1-13.9L58.8 46.6c1.5-9.6 10.1-16.9 20-16.9 152.3 0 165.1-3.7 204 11.4 60.1 23.3 65.6 79.5 44 140.3-21.5 62.6-72.5 89.5-140.1 90.3-43.4 .7-69.5-7-75.3 24.2zM357.1 152c-1.8-1.3-2.5-1.8-3 1.3-2 11.4-5.1 22.5-8.8 33.6-39.9 113.8-150.5 103.9-204.5 103.9-6.1 0-10.1 3.3-10.9 9.4-22.6 140.4-27.1 169.7-27.1 169.7-1 7.1 3.5 12.9 10.6 12.9h63.5c8.6 0 15.7-6.3 17.4-14.9 .7-5.4-1.1 6.1 14.4-91.3 4.6-22 14.3-19.7 29.3-19.7 71 0 126.4-28.8 142.9-112.3 6.5-34.8 4.6-71.4-23.8-92.6z"></path></svg> */}
                 <svg
-                className="w-10 h-8"
+                  className="w-10 h-8"
                   fill="none"
                   stroke="currentColor"
                   stroke-width="1.5"
@@ -149,10 +149,125 @@ const ProductDescription = () => {
                 Add to cart
               </button>
             </div>
-            <div className="mt-2 w-30 ">
-           
-<AiOutlineHeart/>
+            <div className="col-3  mt-1 ">
+              <div className=" h-8 mt-2 w-50 bg-gray-800  text-center rounded">
+                <FavoriteIcon />
+              </div>
             </div>
+          </div>
+        </div>
+      </div>
+
+      {/* part2 */}
+
+      <div style={{ height: "30rem", backgroundColor: "#0B223F" }}>
+        <div
+          className=" grid grid-cols-2 mainparent mt-20 "
+          style={{ backgroundColor: "#0B223F" }}
+        >
+          <div className="headins grid  justify-center font-bold text-4xl sm:ml-3">
+            <div className="mt-4">
+              <h1 className="text-yellow-400">Highlights</h1>
+            </div>
+            <div className="mt-4">
+              {" "}
+              <h1>Product Description</h1>
+            </div>
+
+            <div className="mt-4">
+              <h1>Specification</h1>
+            </div>
+          </div>
+
+          <div className="smalltext mt-6">
+            <div>
+              <CheckCircleIcon color="success" fontSize="20px" /> delighful
+              creemy made
+            </div>
+            <div className="mt-1">
+              <CheckCircleIcon color="success" fontSize="20px" />
+            </div>
+            <div className="mt-1">
+              {" "}
+              <CheckCircleIcon color="success" fontSize="20px" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* part 3 */}
+
+      <div className="mt-4 grid grid-cols-2 justify-items-center ">
+        <div className="font-bold text-4xl text-blue-900">
+          <h1>Rating & Reviews</h1>
+        </div>
+        <div>
+          <button
+            class="rounded w-60 h-10  s:w-30 sm:mt-3"
+            style={{ backgroundColor: "#009FD1" }}
+          >
+            Write a Reviews
+          </button>
+        </div>
+      </div>
+
+      <hr />
+      {/* after the onclick to add reviews */}
+
+      <div className="grid ">
+        <div className="mt-3 w-3/4 text-blue-900  m-auto">
+          <div className="font-bold">Rating </div>
+          <div>
+            <Typography component="legend"></Typography>
+            <Rating
+              name="simple-controlled"
+              value={4}
+              onChange={(event, newValue) => {
+                // setValue(newValue);
+              }}
+            />
+          </div>
+          <div className="font-bold">Review Title</div>
+          <div className="mt-3 ">
+            {" "}
+            <TextField
+              className="w-100 h-10"
+              id="outlined-textarea"
+              label="Enter Your Review title"
+              placeholder="Enter Your Review title"
+              multiline
+            />
+          </div>
+
+          <div className="mt-4 font-bold">Review</div>
+          <div className="mt-3 mb-2">
+            <TextField
+              className="w-full h-full"
+              id="outlined-textarea"
+              label="Review"
+              placeholder="Enter Your Review here"
+              multiline
+            />
+          </div>
+
+          <div className="mt-4 font-bold">Picture/Video (optional)</div>
+
+          <div type="file" className="bg-blue-400 h-20 w-20">
+
+            <label class="block mb-2 relative overflow-hidden" for="file_input">
+              <img src={fileupload} alt="Upload" />
+              <input
+                class="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                id="file_input"
+                type="file"
+              />
+            </label>
+          </div>
+
+
+          <div>
+            <div>button</div>
+            <div> button</div>
           </div>
         </div>
       </div>

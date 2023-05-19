@@ -28,18 +28,24 @@ function App() {
 {/* <Practice/> */}
  
 
- <ProductDescription/>
- {/* <Router>
+ {/* <ProductDescription/> */}
+ <Router>
  <Switch>
           <Route path="/shoppingCart">
           <ShoppingCart/>
           </Route>
           
+          <Route path="/ProductDescription">
+         <ProductDescription/>
+          </Route>
+
+
           <Route path="/">
           <Main/>
           </Route>
         </Switch>
-</Router> */}
+        
+</Router>
 
    </>
   )

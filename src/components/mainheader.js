@@ -27,6 +27,12 @@ import Badge from "@mui/material/Badge";
 import { styled } from "@mui/material/styles";
 import IconButton from "@mui/material/IconButton";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+ 
+} from "react-router-dom";
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   "& .MuiBadge-badge": {
@@ -108,6 +114,7 @@ function HeaderBootstap(props) {
                       </a>
                     </div>
                     <div class="col">
+                  
                       <Link to="/shoppingCart" className="cart-link">
                         {/* {cardsCount > 0 && (
                           <Badge pill bg="primary" className="cart-badge">
@@ -126,6 +133,7 @@ function HeaderBootstap(props) {
                           </StyledBadge>
                         </IconButton>
                       </Link>
+                      
                     </div>
 
                     <div class="col">
