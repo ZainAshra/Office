@@ -5,22 +5,50 @@ import { Button, Container } from "react-bootstrap";
 import crossIcon from "../images/cross icon.png";
 import { addtocartdata } from "../redux/actions";
 import { cardsCount } from "../redux/actions";
-
+import AutorenewIcon from "@mui/icons-material/Autorenew";
+import HomeIcon from "@mui/icons-material/Home";
+import CallIcon from "@mui/icons-material/Call";
+import _ from "lodash";
 const ShoppingCart = () => {
   const dispatch = useDispatch();
   const [cardsCount, setCardsCount] = useState(0);
   const [cardsdata, setcardsdata] = useState([]);
-
+  const [totalbill, settotalBill] = useState(0);
   const allSelectedCards = useSelector((state) => state.AddToCartReducder);
+  const [btnbackground,setbtnbackground] = useState(false)
 
+  const arr = [];
+
+  function sum() {
+    for (var i = 0; i <= allSelectedCards?.length; i++) {
+      if (allSelectedCards[i]?.minPrice > 0) {
+        arr.push(allSelectedCards[i]?.minPrice);
+      }
+    }
+    const sum = _.sum(arr);
+    settotalBill(sum);
+  }
+
+
+  const handleClick = ()=>{
+    setbtnbackground("yellow")
+  }
+  useEffect(() => {
+    sum();
+    console.log(arr);
+  }, [allSelectedCards]);
+
+  console.log(arr);
   const removeAll = (e) => {
     setcardsdata([]);
     setCardsCount(0);
     dispatch(addtocartdata("REMOVEALL", []));
+    sum();
   };
 
   useEffect(() => {
     setcardsdata(allSelectedCards);
+    setCardsCount(allSelectedCards.length);
 
     // dispatch(addtocartdata("REMOVESINGLECART", cardsdata));
   }, []);
@@ -29,12 +57,16 @@ const ShoppingCart = () => {
     const updatedItems = allSelectedCards.filter(
       (cardsdata) => cardsdata?.productId !== productid
     );
-
+    sum();
     setcardsdata(updatedItems);
+    setCardsCount(allSelectedCards?.length);
 
     // setcardsdata(updatedItems);
     dispatch(addtocartdata("REMOVEITEM", updatedItems));
   };
+  setTimeout(() => {
+    setCardsCount(allSelectedCards?.length);
+  }, 2000);
 
   return (
     <>
@@ -47,19 +79,15 @@ const ShoppingCart = () => {
       />
 
       {allSelectedCards.length > 0 && (
-        <div
-          style={{ minHeight: "577px", color: "black" }}
-          className="mainContent"
-        >
-          <div className="container-fluid">
-            <div className=" d-flex pr-4 mr-md-2 mr-sm-0 raw">
-              <div
-                className="col-xl-9 col-md-12 col-lg-12 col-sm-12 col-12"
-                style={{ backgroundColor: "royalbrown" }}
-              >
+        <div style={{ color: "black" }} className="mainContent">
+          <div className=" ">
+            <div className=" flex md:flex-col lg:flex-row sm:flex-col pr-4 mr-md-2 mr-sm-0">
+              <div className=" w-100" style={{ backgroundColor: "royalbrown" }}>
                 <div className="row">
                   <div className="col-12">
-                    <h1 className="m-2">Shopping Cart</h1>
+                    <h1 className="m-2 font-bold text-4xl text-blue-900 italic">
+                      Shopping Cart
+                    </h1>
                   </div>
                   <div className="row">
                     <div className="col-12 d-flex justify-content-end">
@@ -68,7 +96,7 @@ const ShoppingCart = () => {
                         className="bg-danger m-1"
                       >
                         {" "}
-                        Remove
+                        Remove All
                       </Button>
                     </div>
                   </div>
@@ -218,31 +246,161 @@ const ShoppingCart = () => {
                 </div>
               </div>
 
-              <div className="col-xl-3 col-md-12 col-lg-12 col-sm-12 col-12">
-                <div className="row">
-                  <div className="col">
-                    <span
-                      class="border-bottom d-block text-left pl-1 pt-3 pb-3"
-                      style={{
-                        fontWeight: "900",
-                        fontSize: "1.3rem",
-                        color: "white",
-                      }}
-                    >
+              <div className="grid rounded-lg md:basis-1/3 lg:basis-1/3 sm:grid-cols-1  lg:mt-25 md:mt-20 border ml-5 h-40">
+                <div
+                  className=" rounded-lg"
+                  style={{ backgroundColor: "#0B223F", color: "white" }}
+                >
+                  <div>
+                    {" "}
+                    <h1 className="font-bold text-2xl mt-1 p-1">
                       Payment Summary
-                    </span>
-                    <div className="mt-3 row">
-                      <div className="col">item{cardsCount}</div>
-                      <div className="col">11111</div>
+                    </h1>
+                  </div>
+                  <br />
+
+                  <div className="container">
+                    <hr />
+                  </div>
+                  <div className="flex flex-row justify-between mt-2">
+                    <div className="ml-2">
+                      {" "}
+                      <p>item {cardsCount}</p>
+                    </div>
+                    <div className="mr-2">
+                      {" "}
+                      <p>{totalbill}</p>
                     </div>
                   </div>
+                  <div className="flex flex-row justify-between mt-3">
+                    <div className="ml-2">
+                      {" "}
+                      <p>
+                        Shipping to<p>karachi</p>{" "}
+                      </p>
+                    </div>
+
+                    <div className="mr-2">
+                      <p>49</p>
+                    </div>
+                  </div>
+                  <div className="container">
+                    <hr />
+                  </div>
+                  <div className="flex flex-row justify-between mt-3">
+                    <div className="ml-2">
+                      {" "}
+                      <p>Total To Pay </p>
+                    </div>
+                    <div className="mr-2">
+                      {" "}
+                      <p>{totalbill + 49}</p>
+                    </div>
+                  </div>
+                  <div className="m-auto flex justify-center mt-4">
+                    <div className="w-90">
+                      <Button
+                        variant="warning"
+                        className="lg:w-60 sm:w-80 bg-yellow-400 text-bold text-gray-100"
+                      >
+                        Place order
+                      </Button>
+                    </div>
+                  </div>
+                  <div className="mt-6"></div>
+                </div>
+
+                {/* checkoutl */}
+
+                <div
+                  className="mt-8 rounded-lg grid gap-2 "
+                  style={{ backgroundColor: "#0B223F", color: "white" }}
+                >
+                  <div>
+                    <h1 className="font-bold text-2xl mt-1 p-1">Check Out</h1>
+                  </div>
+                  <div className="container">
+                    {" "}
+                    <hr />{" "}
+                  </div>
+                  <div className="ml-2 flex flex-raw justify-between">
+                    <div>
+                      {" "}
+                      <h2 className="text-2xl">Delivery Address</h2>
+                    </div>
+                    <div className="mr-2">
+                      {" "}
+                      <AutorenewIcon />
+                    </div>
+                  </div>
+                  <div className="flex ml-2 mt-3">
+                    <div className="mr-1">
+                      <HomeIcon />
+                    </div>
+                    <div>
+                      <p>
+                        house # 2, street 3 , Bihar Muslim Cooperative Housing
+                        Society,Bahadurabad,Karachi Sindh Pakistan
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex ml-2 mt-2">
+                    <div className="mr-1">
+                      <CallIcon />
+                    </div>
+                    <div>
+                      <p>12334444</p>
+                    </div>
+                  </div>
+                  <div className="container">
+                    {" "}
+                    <hr />{" "}
+                  </div>
+                  <div>
+                    <h1 className=" text-2xl mt-1 p-1">Payment Methods</h1>
+                  </div>
+
+                  <div className="w-100 border text-lg">
+                    <button
+                      type="button"
+                      className="border-2 ml-8 mt-3 mb-4  border-gray-600"
+                      style={{ width: "80%" }}
+                    >
+                      Credit / Debit card
+                    </button>
+
+                    <button
+                      type="button"
+                      className="border-2 ml-8 mt-2 mb-4  border-gray-600 text-gray-600"
+                      style={{ width: "80%" }}
+                    >
+                      Wallet
+                    </button>
+
+                    <button
+                      type="button"
+                      className="border-2 ml-8 mt-2 mb-4  border-gray-600"
+                      style={{ width: "80%"}}
+                      onclick={()=>{handleClick()}}
+                      id="payment-btn"
+                    >
+                      Cash On Delivery
+                    </button>
+                  </div>
+
+
+
+
+
+
+
+                  
                 </div>
               </div>
             </div>
           </div>
         </div>
       )}
-      
     </>
   );
 };

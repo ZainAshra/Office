@@ -6,9 +6,15 @@ import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { Rating, TextField, Typography } from "@mui/material";
 import fileupload from "..//images/fileupload.PNG"
+import Button from '@mui/material/Button';
+import Footer from "./footer";
+
 const ProductDescription = () => {
   return (
     <>
+    <div>
+      <HeaderBootstap/>
+    </div>
       <div className="grid md:grid-cols-2 sm:grid-cols-1 place-content-center  mt-6 mx-auto gap-5 ">
         {/* /image div */}
         <div className="grid place-content-center   ">
@@ -22,14 +28,15 @@ const ProductDescription = () => {
         {/* product deatil div */}
         <div className=" grid sm:justify-center   lg:justify-start md:justify-start ">
           <div className="flex flex-row mt-8  ">
-            <div className="text-gray-900 text-lg ">brand: NYX </div>
+            <div className="text-gray-900 text-lg  "><b> Brand:</b> NYX </div>
+            <br/>
             <div className="ml-8 w-12 bg-sky-500/100 text-center rounded">
               FBP
             </div>
           </div>
 
-          <div className="text-gray-900  text-2xl">
-            Nyx Soft Matte Long-Lasting <br /> Lip Cream 8ml
+          <div className="text-gray-900  text-2xl font-bold mb-2">
+            Nyx Soft Matte Long-Lasting <br /> Lip Cream 8ml <br/>
           </div>
           <div class="flex items-center">
             <svg
@@ -87,7 +94,7 @@ const ProductDescription = () => {
             </p>
           </div>
           <div className="flex flex-row">
-            <div className="text-4xl text-blue-900 ">PKR 1099</div>
+            <div className="text-4xl text-blue-900 font-bold ">PKR 1099</div>
             <div className=" mt-2 ml-6 text-2xl text-red-600 italic">
               <del>1099</del>
             </div>
@@ -165,7 +172,7 @@ const ProductDescription = () => {
           className=" grid grid-cols-2 mainparent mt-20 "
           style={{ backgroundColor: "#0B223F" }}
         >
-          <div className="headins grid  justify-center font-bold text-4xl sm:ml-3">
+          <div className="headins grid  justify-center font-bold text-4xl sm:ml-7 md:ml-2">
             <div className="mt-4">
               <h1 className="text-yellow-400">Highlights</h1>
             </div>
@@ -198,12 +205,12 @@ const ProductDescription = () => {
       {/* part 3 */}
 
       <div className="mt-4 grid grid-cols-2 justify-items-center ">
-        <div className="font-bold text-4xl text-blue-900">
+        <div className="font-bold text-4xl  text-blue-900">
           <h1>Rating & Reviews</h1>
         </div>
         <div>
           <button
-            class="rounded w-60 h-10  s:w-30 sm:mt-3"
+            class="rounded  h-10  w-40 sm:mt-3"
             style={{ backgroundColor: "#009FD1" }}
           >
             Write a Reviews
@@ -265,12 +272,16 @@ const ProductDescription = () => {
           </div>
 
 
-          <div>
-            <div>button</div>
-            <div> button</div>
+          <div className="flex mt-2">
+            <div className="mr-3"><Button color="secondary" variant="contained">Cancle</Button></div>
+            <div ><Button variant="contained">Submit</Button></div>
           </div>
+<br/>
+          <hr/>
+          
         </div>
       </div>
+
     </>
   );
 };

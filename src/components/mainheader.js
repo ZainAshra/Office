@@ -33,7 +33,7 @@ import {
   Route,
  
 } from "react-router-dom";
-
+import sampleimage from "../images/productimg.png"
 const StyledBadge = styled(Badge)(({ theme }) => ({
   "& .MuiBadge-badge": {
     right: -3,
@@ -58,15 +58,16 @@ function HeaderBootstap(props) {
       {showSearch && (
         <Navbar className="b_navbar" expand="lg">
           <Container fluid>
-            <Navbar.Brand href="#">
+            <Navbar.Brand href="#" className="flex flex-row">
               <img
+              className=""
                 src={drawer}
-                alt=""
+                alt="ima"
                 onClick={() => {
                   setshowmainmenu(true);
                 }}
               />{" "}
-              <img src={companylogo} alt="" />{" "}
+              <img src={companylogo} alt=""  />
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="navbarScroll" />
             <Navbar.Collapse id="navbarScroll">
