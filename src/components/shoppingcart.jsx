@@ -8,6 +8,7 @@ import { cardsCount } from "../redux/actions";
 import AutorenewIcon from "@mui/icons-material/Autorenew";
 import HomeIcon from "@mui/icons-material/Home";
 import CallIcon from "@mui/icons-material/Call";
+import DeleteIcon from '@mui/icons-material/Delete';
 import _ from "lodash";
 const ShoppingCart = () => {
   const dispatch = useDispatch();
@@ -15,7 +16,7 @@ const ShoppingCart = () => {
   const [cardsdata, setcardsdata] = useState([]);
   const [totalbill, settotalBill] = useState(0);
   const allSelectedCards = useSelector((state) => state.AddToCartReducder);
-  const [btnbackground,setbtnbackground] = useState(false)
+  const [btnbackground, setbtnbackground] = useState(false);
 
   const arr = [];
 
@@ -29,16 +30,26 @@ const ShoppingCart = () => {
     settotalBill(sum);
   }
 
+  const handleClick1 = (e) => {
+    setbtnbackground(true);
+  };
+  const handleClick2 = (e) => {
+    setbtnbackground(false);
+  };
 
-  const handleClick = ()=>{
-    setbtnbackground("yellow")
-  }
+  // const handleClick2 = ()=>{
+  //   const btnid = document.getElementById("payment-btn2")
+  //   btnid.style.backgroundColor = 'blue';
+  //   console.log("dasdsdasdd")
+
+  // }
+
   useEffect(() => {
     sum();
-    console.log(arr);
+    // console.log(arr);
   }, [allSelectedCards]);
 
-  console.log(arr);
+  // console.log(arr);
   const removeAll = (e) => {
     setcardsdata([]);
     setCardsCount(0);
@@ -225,13 +236,14 @@ const ShoppingCart = () => {
                                     </div>
                                   </div>
                                   <div className="col-2 d-flex justify-content-center">
-                                    <div className="justify-content-center mt-4">
-                                      <img
+                                    <div className="justify-content-center mt-4 ">
+                                    <DeleteIcon className="mt-5" onClick={() => removeCart(x?.productId)}/>
+                                      {/* <img
                                         onClick={() => removeCart(x?.productId)}
                                         width="100"
                                         src={crossIcon}
                                         alt=""
-                                      />
+                                      /> */}
                                     </div>
                                   </div>
                                   <hr />
@@ -360,14 +372,30 @@ const ShoppingCart = () => {
                     <h1 className=" text-2xl mt-1 p-1">Payment Methods</h1>
                   </div>
 
-                  <div className="w-100 border text-lg">
-                    <button
-                      type="button"
-                      className="border-2 ml-8 mt-3 mb-4  border-gray-600"
-                      style={{ width: "80%" }}
-                    >
-                      Credit / Debit card
-                    </button>
+                  <div className="w-100  text-lg">
+                    {!btnbackground && (
+                      <button
+                        type="button"
+                        className="border-2 ml-8 mt-3 mb-4  border-gray-600"
+                        style={{ width: "80%" }}
+                        onClick={(e) => handleClick1(e)}
+                        id="payment-btn1"
+                      >
+                        Credit / Debit card
+                      </button>
+                    )}
+
+                    {btnbackground && (
+                      <button
+                        type="button"
+                        className="border-2 ml-8 mt-3 mb-4 bg-blue-500 border-gray-600"
+                        style={{ width: "80%" }}
+                        onClick={(e) => handleClick2(e)}
+                        id="payment-btn1"
+                      >
+                        Credit / Debit card
+                      </button>
+                    )}
 
                     <button
                       type="button"
@@ -380,21 +408,34 @@ const ShoppingCart = () => {
                     <button
                       type="button"
                       className="border-2 ml-8 mt-2 mb-4  border-gray-600"
-                      style={{ width: "80%"}}
-                      onclick={()=>{handleClick()}}
-                      id="payment-btn"
+                      style={{ width: "80%" }}
+                      // onclick={handleClick2()}
+                      id="payment-btn2"
                     >
                       Cash On Delivery
                     </button>
                   </div>
 
-
-
-
-
-
-
-                  
+                  <div className="container">
+                    {" "}
+                    <hr />
+                  </div>
+                  <div className="text-center">
+                    <h1 className=" text-2xl mt-1 p-1">
+                      Order Comment{" "}
+                      <span className="text-gray-600">{`(Optional)`}</span>
+                    </h1>
+                    <div class="form-group container mb-4" style={{marginTop:"-4px"}}>
+                      <label for="exampleFormControlTextarea1">
+                        
+                      </label>
+                      <textarea
+                        class="form-control w-60 m-auto mb-4"
+                        id="exampleFormControlTextarea1"
+                        rows="3"
+                      ></textarea>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

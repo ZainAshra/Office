@@ -6,18 +6,31 @@ import React from "react";
 import _ from "lodash";
 
 function Slider() {
-  const [isMobile, setisMobile] = useState(false);
-  const bannerImagesArray = useSelector(({ photos }) => photos);
-  // console.log(bannerImagesArray)
-  const groupBannerData = _.groupBy(bannerImagesArray, "mobile");
-  const mobileBannersData = groupBannerData[1];
-  const webBannersData = groupBannerData[0];
-  // console.log(mobileBannersData, "mobile");
+
+
   const dispatch = useDispatch();
+
+
   useEffect(() => {
     dispatch(fetchData());
-  }, [dispatch]);
-  // console.log(bannerImagesArray[0]?.imageUrl);
+  }, []);
+
+
+  const [isMobile, setisMobile] = useState(false);
+
+  const bannerImagesArray = useSelector((state) => state.changeTheBanner);
+  
+  
+  const groupBannerData = _.groupBy(bannerImagesArray?.photos, "mobile");
+  console.log(groupBannerData[0],"sdadasd")
+
+
+  const mobileBannersData = groupBannerData[0];
+
+  const webBannersData = groupBannerData[1];
+
+  
+
 
   useEffect(() => {
     const handleResize = () => {
@@ -34,7 +47,7 @@ function Slider() {
 
   return (
     <div className="main">
-      <Carousel style={{ padding: "6rem" }} variant="dark">
+      <Carousel style={{ padding: "2rem" }} variant="dark">
         {isMobile
           ? mobileBannersData?.map((item) => {
               return (
@@ -54,11 +67,11 @@ function Slider() {
             })
           : webBannersData?.map((item) => {
               return (
-                <Carousel.Item>
+                <Carousel.Item style={{marginTop:"-4rem"}}>
                   <img
                     style={{
                       width: "100%",
-                      height: "100%",
+                      height: "300px",
                       objectFit: "contain",
                     }}
                     src={item?.imageUrl}

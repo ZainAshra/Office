@@ -14,7 +14,9 @@ import Allcards from "./allcards";
 import { useDispatch, useSelector } from "react-redux";
 import _ from "lodash";
 import { allcardsData } from "../redux/reducers/allcardsDataReducer";
-import { cardsData } from "../redux/actions";
+import { cardsData, categoriesData } from "../redux/actions";
+
+
 
 const cat = [
   "product",
@@ -57,9 +59,19 @@ export default function Main(newcount) {
     const promise1 = dispatch(cardsData(1955, "WHOLESALE"));
     const promise2 = dispatch(cardsData(1949, "PLENTYSMART"));
     const promise3 = dispatch(cardsData(5, "BEAUTYANDGROOMING"));
-
-    Promise.all([promise1, promise2, promise3]);
+    const promise4 = dispatch(categoriesData());
+    Promise.all([promise1, promise2, promise3,promise4]);
   }, []);
+
+
+  // product categeros cards
+  const categoriesdatafromreducer = useSelector((state)=> state?.categories)
+
+  const groupedData = _.groupBy(categoriesdatafromreducer?.categories, 'parentId');
+  
+  const productcards = groupedData[1]
+ 
+
 
   return (
     <>
@@ -109,15 +121,16 @@ export default function Main(newcount) {
         <h1 className="catheading">Shop Our Top Catgories</h1>
       </div>
 
-      <div className="catcardsparent" style={{ color: "blue" }}>
-        {cat.map((e, i) => {
+      <div className="catcardsparent" >
+        {productcards.map((e, i) => {
           return (
             <div
-              className="catcarddiv"
-              style={{ backgroundColor: getRandomColor(), margin: "10px" }}
+              className=" catcarddiv text-center justify-center border "
+              style={{ backgroundColor: getRandomColor(), marginTop: "-10px" ,marginLeft:"10pxf" }}
               key={i}
-            >
-              <h3>{e}</h3>
+            ><div> <h3 className="text-gray-900 font-bold">{e?.name}</h3></div>
+              
+              <div className=""><img src={e?.imageUrl} alt="" style={{height:"120px"}}/></div>
             </div>
           );
         })}

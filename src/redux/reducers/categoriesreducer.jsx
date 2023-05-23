@@ -11,6 +11,6 @@ const initialstate = {
         return state;
     }
   };
-  console.log(initialstate);
+
   export default categories;
   

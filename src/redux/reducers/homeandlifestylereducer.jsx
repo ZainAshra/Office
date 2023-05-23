@@ -10,6 +10,6 @@ const initialstate = {
         return state;
     }
   };
-  console.log(initialstate.homeandlifestyle);
+ 
   export default homeandlifestyle;
   

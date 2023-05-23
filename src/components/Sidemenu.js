@@ -5,6 +5,9 @@ import axios from "axios";
 import _ from "lodash";
 import arrowIcon from "../images/Icon.png";
 import "./design.css";
+import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { choiseCat } from "../redux/actions";
 
 export default function Sidemenu() {
   const [data, setData] = useState([]);
@@ -22,15 +25,15 @@ export default function Sidemenu() {
       .get("https://api.plentys.pk/api/v1/public/allCategories?cityId=1")
 
       .then((response) => {
-        console.log(response.data.data.length);
+        // console.log(response.data.data.length);
 
         for (let i = 0; i < response.data.data.length; i++) {
-          console.log("run");
+          // console.log("run");
 
           chk.push(response.data.data[i]);
 
           const groups = _.groupBy(chk, "parentId");
-          console.log(groups);
+          // console.log(groups);
           const arr = _.map(_.toPairs(groups), ([key, value]) => ({
             key,
             value,
@@ -48,25 +51,30 @@ export default function Sidemenu() {
     getData();
   }, []);
 
-  console.log(data, "data");
+  // console.log(data, "data");
 
   const foo = (childid) => {
-    console.log(childid, "childid");
+    // console.log(childid, "childid");
     setremoveChilds(true);
 
     const child = data.filter((x, i) => x.parentId === childid);
-    console.log(child, "child");
+    // console.log(child, "child");
     setChildData(child);
     setShowData(true);
   };
 
   const subCategory = (subChild) => {
     const subCategory = data.filter((x, i) => x.parentId === subChild);
-    console.log(subCategory, "subcat");
+    // console.log(subCategory, "subcat");
     setSubcat(subCategory);
     setremoveNestedChild(true);
   };
 
+  const dispatch = useDispatch()
+    const getchildID=(id)=>{
+        console.log(id)
+        dispatch(choiseCat(id,"CHOISECAT"))
+    }
   return (
     <>
       <div className="bodydiv">
@@ -80,7 +88,9 @@ export default function Sidemenu() {
                 key={index}
                 className="child"
               >
-                <li className="childlink">{pardata[index].name}</li>
+              <Link to="/choisecat">
+                <li onClick={()=>{getchildID(pardata[index]?.childId)}} className="childlink">{`${pardata[index].name}`}</li>
+                </Link>
                 <li className="">
                   <img src={arrowIcon} alt="" />
                 </li>
@@ -98,6 +108,7 @@ export default function Sidemenu() {
                 <ul
                   className="child"
                   onMouseEnter={() => subCategory(ChildData[i]?.childId)}
+                  
                 >
                   <li className="childlink">{e?.name}</li>
                   {Subcat[0] && (

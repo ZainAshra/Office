@@ -24,7 +24,7 @@ export const Allcards = (props) => {
     <>
       <Card style={{ width: "15rem", hight: "10remt", border: "none" }}>
         <Card.Img
-          style={{ border: "1px solid lightgrey", borderRadius: "5px" }}
+          style={{ border: "1px solid lightgrey", borderRadius: "14px" }}
           variant="top"
           src={props.image}
         />

@@ -34,6 +34,8 @@ import {
  
 } from "react-router-dom";
 import sampleimage from "../images/productimg.png"
+
+
 const StyledBadge = styled(Badge)(({ theme }) => ({
   "& .MuiBadge-badge": {
     right: -3,
@@ -46,7 +48,7 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 function HeaderBootstap(props) {
   var cardsCount = useSelector((state) => state.AddToCartReducder);
   var cardsCount = cardsCount.length;
-  console.log(cardsCount, "count");
+  // console.log(cardsCount, "count");
   // const [showDrawer, setShowDrawer] = useState(false);
   const [showSearch, setshowSearch] = useState(true);
   const [showmainmenu, setshowmainmenu] = useState(false);
@@ -59,6 +61,7 @@ function HeaderBootstap(props) {
         <Navbar className="b_navbar" expand="lg">
           <Container fluid>
             <Navbar.Brand href="#" className="flex flex-row">
+           
               <img
               className=""
                 src={drawer}
@@ -67,7 +70,9 @@ function HeaderBootstap(props) {
                   setshowmainmenu(true);
                 }}
               />{" "}
-              <img src={companylogo} alt=""  />
+               <Link to="/">
+              <img src={companylogo} alt=""   />
+              </Link>
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="navbarScroll" />
             <Navbar.Collapse id="navbarScroll">

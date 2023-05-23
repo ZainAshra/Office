@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import HeaderBootstap from "./mainheader";
 import { Router } from "react-router-dom/cjs/react-router-dom.min";
 import image from "../images/productimg.png";
@@ -10,6 +10,7 @@ import Button from '@mui/material/Button';
 import Footer from "./footer";
 
 const ProductDescription = () => {
+  const [value ,setValue]= useState(0)
   return (
     <>
     <div>
@@ -228,9 +229,9 @@ const ProductDescription = () => {
             <Typography component="legend"></Typography>
             <Rating
               name="simple-controlled"
-              value={4}
+              value={value}
               onChange={(event, newValue) => {
-                // setValue(newValue);
+                setValue(newValue);
               }}
             />
           </div>
