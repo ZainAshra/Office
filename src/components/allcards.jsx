@@ -32,6 +32,7 @@ export const Allcards = (props) => {
           <Card.Title>{props.brand}</Card.Title>
           <Card.Text>{props.title}</Card.Text>
           <Button
+          className="lg:bg-blue-400"
            
             onClick={() => {
               addToCartBtn(props.alldata);

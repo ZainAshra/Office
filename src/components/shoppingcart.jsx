@@ -17,8 +17,11 @@ const ShoppingCart = () => {
   const [totalbill, settotalBill] = useState(0);
   const allSelectedCards = useSelector((state) => state.AddToCartReducder);
   const [btnbackground, setbtnbackground] = useState(false);
+  const [valuecount ,setValuecount] = useState(1)
 
   const arr = [];
+  const [purchaseLimit,setpurchaseLimit] = useState(1);
+
 
   function sum() {
     for (var i = 0; i <= allSelectedCards?.length; i++) {
@@ -79,6 +82,19 @@ const ShoppingCart = () => {
     setCardsCount(allSelectedCards?.length);
   }, 2000);
 
+
+
+  const increaseValue = (x)=>{
+          if (valuecount < x ){
+            setValuecount(valuecount+1)
+          }
+  }
+
+  const decreseValue = ()=>{
+    if (valuecount > 0){
+      setValuecount(valuecount-1)
+    }
+  }
   return (
     <>
       <HeaderBootstap
@@ -187,6 +203,7 @@ const ShoppingCart = () => {
                                           <button
                                             className="btn btn-outline-secondary"
                                             type="button"
+                                            onClick={()=>decreseValue()}
                                           >
                                             -
                                           </button>
@@ -194,12 +211,14 @@ const ShoppingCart = () => {
                                         <input
                                           type="text"
                                           className="form-control input-sm text-center"
-                                          value="1"
+                                          value={valuecount}
+
                                         />
                                         <div className="input-group-append">
                                           <button
                                             className="btn btn-outline-secondary"
                                             type="button"
+                                            onClick={()=>increaseValue(x.purchaseLimit)}
                                           >
                                             +
                                           </button>

@@ -1,36 +1,27 @@
 import Carousel from "react-bootstrap/Carousel";
-import {fetchData} from "../redux/actions/index";
+import { fetchData } from "../redux/actions/index";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import React from "react";
 import _ from "lodash";
 
 function Slider() {
-
-
   const dispatch = useDispatch();
-
 
   useEffect(() => {
     dispatch(fetchData());
   }, []);
 
-
   const [isMobile, setisMobile] = useState(false);
 
   const bannerImagesArray = useSelector((state) => state.changeTheBanner);
-  
-  
-  const groupBannerData = _.groupBy(bannerImagesArray?.photos, "mobile");
-  console.log(groupBannerData[0],"sdadasd")
 
+  const groupBannerData = _.groupBy(bannerImagesArray?.photos, "mobile");
+  console.log(groupBannerData[0], "sdadasd");
 
   const mobileBannersData = groupBannerData[0];
 
   const webBannersData = groupBannerData[1];
-
-  
-
 
   useEffect(() => {
     const handleResize = () => {
@@ -47,7 +38,12 @@ function Slider() {
 
   return (
     <div className="main">
-      <Carousel style={{ padding: "2rem" }} variant="dark">
+      <Carousel
+        style={{ padding: "2rem" }}
+        variant="dark"
+        nextIcon={null} // Remove next arrow
+        prevIcon={null}
+      >
         {isMobile
           ? mobileBannersData?.map((item) => {
               return (
@@ -67,7 +63,7 @@ function Slider() {
             })
           : webBannersData?.map((item) => {
               return (
-                <Carousel.Item style={{marginTop:"-4rem"}}>
+                <Carousel.Item style={{ marginTop: "-4rem" }}>
                   <img
                     style={{
                       width: "100%",
