@@ -17,7 +17,6 @@ function Slider() {
   const bannerImagesArray = useSelector((state) => state.changeTheBanner);
 
   const groupBannerData = _.groupBy(bannerImagesArray?.photos, "mobile");
-  console.log(groupBannerData[0], "sdadasd");
 
   const mobileBannersData = groupBannerData[0];
 

@@ -28,7 +28,7 @@ export const fetchData = () => {
         type: "BANNER",
         payload: parseData.data,
       });
-      console.log(parseData,"parsedata")
+      // console.log(parseData,"parsedata")
     };
   } catch (error) {
     console.log(error);

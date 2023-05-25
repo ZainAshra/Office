@@ -122,7 +122,7 @@ export default function Main(newcount) {
       </div>
 
       <div className="catcardsparent" >
-        {productcards.map((e, i) => {
+        {productcards?.map((e, i) => {
           return (
             <div
               className=" catcarddiv text-center justify-center border "
