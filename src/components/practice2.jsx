@@ -30,6 +30,7 @@ function Practice2() {
     if (searchQuery.length >= 2) {
       const filteredResults = _.filter(allProducts, (product) =>
         _.includes(_.toLower(product.brand), _.toLower(searchQuery))
+     
       );
       setSearchResults(filteredResults);
     } else {

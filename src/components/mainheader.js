@@ -49,7 +49,7 @@ function HeaderBootstap(props) {
   var cardsCount = useSelector((state) => state.AddToCartReducder);
   var cardsCount = cardsCount.length;
   // console.log(cardsCount, "count");
-  // const [showDrawer, setShowDrawer] = useState(false);
+  // const [showDrawer, s etShowDrawer] = useState(false);
   const [showSearch, setshowSearch] = useState(true);
   const [showmainmenu, setshowmainmenu] = useState(false);
 
