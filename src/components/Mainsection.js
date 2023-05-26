@@ -125,7 +125,7 @@ export default function Main(newcount) {
         {productcards?.map((e, i) => {
           return (
             <div
-              className=" catcarddiv text-center justify-center border "
+              className=" catcarddiv text-center justify-center border gap-2 "
               style={{ backgroundColor: getRandomColor(), marginTop: "-10px" ,marginLeft:"10pxf" }}
               key={i}
             ><div> <h3 className="text-gray-900 font-bold">{e?.name}</h3></div>
@@ -154,7 +154,7 @@ export default function Main(newcount) {
                 display: "flex",
                 flexDirection: "row",
                 gap: "20px",
-                border: "1px solid black",
+                // border: "1px solid black",
                 overflow: "auto",
                 marginBottom: "10px",
                 overflowX: "scroll",

@@ -21,3 +21,10 @@
     animation-iteration-count: infinite;
   }
    */
+
+
+   .phone-input-container .react-phone-number-input__icon {
+    width: 20px; /* Adjust the width as needed */
+    height: 20px; /* Adjust the height as needed */
+  }
+  

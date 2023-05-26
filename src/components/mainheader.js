@@ -68,6 +68,7 @@ function HeaderBootstap(props) {
                 alt="ima"
                 onClick={() => {
                   setshowmainmenu(true);
+                  
                 }}
               />{" "}
                <Link to="/">
@@ -154,9 +155,11 @@ function HeaderBootstap(props) {
                       </Link>
                     </div>
                     <div class="col">
+                    <Link to="signup">
                       <Button id="signupbtn" variant="outline-success">
                         Signup
                       </Button>
+                      </Link>
                     </div>
                   </div>
                 </div>

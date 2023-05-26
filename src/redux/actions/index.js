@@ -123,3 +123,25 @@ export const choiseCat = (id, actionName) => {
     console.log(error);
   }
 };
+
+
+export const allproductsdata = (actionName) => {
+
+  try {
+    return async (dispatch) => {
+      let response = await fetch(
+        `https://api.plentys.pk/api/v1/public/product/search?title=/&categoryId=1&minPrice=1&maxPrice=&productIds=&storeId=&brandId=&rating=&conditionId=&discountValue=&promotionId=&lookupShippingTypeId=&lookupAttributeValueIds=&freshBaazar=&exactDiscount=&cityId=1&orderBy=stockDesc&limit=60&page=1`
+      );
+      let parseData = await response.json();
+      console.log(parseData,"parsedata")
+      dispatch({
+        type: actionName,
+        payload: parseData.data,
+      });
+      
+    };
+  } catch (error) {
+    console.log(error);
+  }
+};
+

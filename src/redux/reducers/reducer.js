@@ -5,6 +5,7 @@ import homeandlifestyle from "./homeandlifestylereducer";
 import {allcardsData} from '..//reducers/allcardsDataReducer'
 import  {AddToCartReducder } from "./addtocartreducder";
 import { choiseCatReducer } from "./choiceCatReducer";
+import allProductsData from "./allproductsdatareducer";
 const rootReducer =combineReducers({
     changeTheBanner: changeTheBanner ,
     categories:categories,
@@ -12,6 +13,9 @@ const rootReducer =combineReducers({
     allcardsData:allcardsData,
     AddToCartReducder:AddToCartReducder,
     choiseCatReducer:choiseCatReducer,
+    allProductsData:allProductsData
+   
+    
     
    
 })

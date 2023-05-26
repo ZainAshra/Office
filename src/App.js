@@ -19,12 +19,16 @@ import {
 import ProductDescription from './components/productDescription';
 import HeaderBootstap from './components/mainheader';
 import Login from './components/login';
+import Signup from './components/signup';
+import Practice2 from './components/practice2';
+import Forgetpassword from './components/forgetpassword';
 
 
 
 function App() {
   return (
     <>
+   
 
 {/* <Notfound/> */}
 {/* <Allcards/> */}
@@ -33,6 +37,7 @@ function App() {
 
  {/* <ProductDescription/> */}
  <Router>
+ 
  <Switch>
           <Route path="/shoppingCart">
           <ShoppingCart/>
@@ -42,6 +47,10 @@ function App() {
          <ProductDescription/>
           </Route>
 
+          <Route path="/forgetpassword">
+         <Forgetpassword/>
+          </Route>
+
           <Route path="/choisecat">
          <Choisecat/>
           </Route>
@@ -49,6 +58,14 @@ function App() {
           
           <Route path="/login">
          <Login/>
+          </Route>
+
+          <Route path="/signup">
+         <Signup/>
+          </Route>
+
+          <Route path="/practice2">
+         <Practice2/>
           </Route>
 
 

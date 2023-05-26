@@ -64,6 +64,7 @@ export default function Sidemenu() {
   };
 
   const subCategory = (subChild) => {
+    
     const subCategory = data.filter((x, i) => x.parentId === subChild);
     // console.log(subCategory, "subcat");
     setSubcat(subCategory);
@@ -72,7 +73,7 @@ export default function Sidemenu() {
 
   const dispatch = useDispatch()
     const getchildID=(id)=>{
-        console.log(id)
+       
         dispatch(choiseCat(id,"CHOISECAT"))
     }
   return (
@@ -110,7 +111,7 @@ export default function Sidemenu() {
                   onMouseEnter={() => subCategory(ChildData[i]?.childId)}
                   
                 >
-                  <li className="childlink">{e?.name}</li>
+                  <li onClick={()=>{getchildID(ChildData[i]?.childId)}} className="childlink">{e?.name}</li>
                   {Subcat[0] && (
                     <li>
                       <img src={arrowIcon} alt="" />
@@ -134,7 +135,7 @@ export default function Sidemenu() {
             {Subcat?.map((x, i) => {
               return (
                 <ul className="child">
-                  <li className="childlink">{x?.name}</li>
+                  <li   className="childlink">{x?.name}</li>
                 </ul>
               );
             })}

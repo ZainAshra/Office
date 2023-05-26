@@ -10,17 +10,23 @@ import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import fbicon from "..//images/_Facebook.png";
 import googleicon from "..//images/_Google.png";
-
 import { Link } from "react-router-dom";
+import PhoneInput from "react-phone-number-input";
 import "animate.css";
 import "./login.css";
 import HeaderBootstap from "./mainheader";
 
-const Login = () => {
+const Signup = () => {
+  const [nameerror, setnameerror] = useState(false);
+  const [confirm_password_error, setconfirm_password_error] = useState(false);
+  const [phonenumbererror, setphonenumbererror] = useState(false);
+  const [phnumber, setphnumber] = useState();
   const [showPassword, setShowPassword] = React.useState(false);
   const [userRegister, setuserRegister] = useState({
     email: "",
     password: "",
+    username: "",
+    confirm_password: "",
   });
   const [showerror, setShowerror] = useState(false);
   const [showerrorpasword, setshowerrorpasword] = useState(false);
@@ -32,7 +38,7 @@ const Login = () => {
   };
 
   const handleinput = (e) => {
-    console.log(e);
+    // console.log(e);
     const name = e?.target.name;
     const value = e?.target.value;
 
@@ -41,27 +47,44 @@ const Login = () => {
   };
   const handleSubmit = (e) => {
     e?.preventDefault();
-    if (userRegister.password.length < 8) {
+    if (userRegister?.password.length < 8) {
       setshowerrorpasword(true);
       // alert("password must be greater than 8 characters")
+      return;
+    }
+    if (phnumber?.length !== 13) {
+      setphonenumbererror(true);
+      return;
+    }
+    if (!/^[a-zA-Z0-9]+$/.test(userRegister.username)) {
+      setnameerror(true);
+      return;
+    }
+    if (userRegister.password !== userRegister.confirm_password) {
+      setconfirm_password_error(true);
+
       return;
     }
 
     if (
       !/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(
-        userRegister.email
+        userRegister?.email
       )
     ) {
       setShowerror(true);
       // alert('Please enter a valid email address');
       return;
     }
-    alert("Form Submited");
+    alert("Form Submitted");
     setShowerror(false);
     setshowerrorpasword(false);
+    setphonenumbererror(false);
+    setconfirm_password_error(false);
+    setnameerror(false);
+    
   };
 
-  console.log("first");
+  console.log(phnumber?.length);
 
   return (
     <>
@@ -81,7 +104,7 @@ const Login = () => {
                   style={{ color: "#0B223F" }}
                 >
                   {" "}
-                  Welcome Back
+                  Welcome To Plentys
                 </h1>
               </div>
               <div>
@@ -89,9 +112,67 @@ const Login = () => {
                   className="text-md sm:text-sm text-center"
                   style={{ color: "#94A3B8" }}
                 >
-                  Welcome Back! Please enter your details.
+                  Create an account
                 </p>
               </div>
+
+              <div className=" md:ml-20 mt-8  " style={{ color: "#0B223F" }}>
+                <p
+                  className="font-bold text-sm mb-1  w-100 text-start"
+                  style={{ color: "#0B223F" }}
+                >
+                  Name
+                </p>
+                <TextField
+                  className="w-full "
+                  id="outlined-size-small"
+                  size="small"
+                  placeholder="Name"
+                  name="username"
+                  onChange={handleinput}
+                  value={userRegister.username}
+                  autoComplete={false}
+                  required
+                />
+                {nameerror && (
+                  <p
+                    className=" text-sm   w-100 text-start"
+                    style={{ color: "red" }}
+                  >
+                    Please enter a valid name
+                  </p>
+                )}
+              </div>
+
+              <div className="  md:ml-20 mt-8  " style={{ color: "#0B223F" }}>
+                <p
+                  className="font-bold text-sm mb-1  w-100 text-start"
+                  style={{ color: "#0B223F" }}
+                >
+                  Phone Number
+                </p>
+
+                <div className="phone-input-container">
+                  <PhoneInput
+                    style={{ height: "30px" }}
+                    defaultCountry="PK"
+                    required
+                    className="border rounded p-2 "
+                    international
+                    value={phnumber}
+                    onChange={setphnumber}
+                  />
+                </div>
+                {phonenumbererror && (
+                  <p
+                    className=" text-sm   w-100 text-start"
+                    style={{ color: "red" }}
+                  >
+                    Please enter a valid number
+                  </p>
+                )}
+              </div>
+
               <div className=" md:ml-20 mt-8  " style={{ color: "#0B223F" }}>
                 <p
                   className="font-bold text-sm mb-1  w-100 text-start"
@@ -107,6 +188,7 @@ const Login = () => {
                   name="email"
                   onChange={handleinput}
                   value={userRegister.email}
+                  required
                 />
                 {showerror && (
                   <p
@@ -131,6 +213,7 @@ const Login = () => {
                   Password
                 </InputLabel> */}
                   <OutlinedInput
+                    required
                     name="password"
                     onChange={handleinput}
                     value={userRegister.password}
@@ -163,6 +246,54 @@ const Login = () => {
                   </p>
                 )}
               </div>
+
+              <div className=" md:ml-20  mt-8  " style={{ color: "#0B223F" }}>
+                <p
+                  className="font-bold text-sm mb-1  w-100 text-start"
+                  style={{ color: "#0B223F" }}
+                >
+                  Confirm Password
+                </p>
+                {/* password btinput */}
+                <FormControl sx={{ width: "100%" }}>
+                  {/* <InputLabel htmlFor="outlined-adornment-password">
+                  Password
+                </InputLabel> */}
+                  <OutlinedInput
+                    required
+                    name="confirm_password"
+                    onChange={handleinput}
+                    value={userRegister.confirm_password}
+                    hiddenLabel={false}
+                    size="small"
+                    id="outlined-adornment-password"
+                    type={showPassword ? "text" : "password"}
+                    endAdornment={
+                      <InputAdornment position="end">
+                        <IconButton
+                          aria-label="toggle password visibility"
+                          onClick={handleClickShowPassword}
+                          onMouseDown={handleMouseDownPassword}
+                          edge="end"
+                        >
+                          {showPassword ? <VisibilityOff /> : <Visibility />}
+                        </IconButton>
+                      </InputAdornment>
+                    }
+                    // label="Password"
+                    placeholder="Confirm Password"
+                  />
+                </FormControl>
+                {confirm_password_error && (
+                  <p
+                    className=" text-sm   w-100 text-start"
+                    style={{ color: "red" }}
+                  >
+                    password not matched
+                  </p>
+                )}
+              </div>
+
               <div className="mt-1 flex justify-end text-blue-900 text-sm italic underline :hover cursor-pointer">
                 <div>
                   <p>forget password?</p>
@@ -209,11 +340,11 @@ const Login = () => {
               </div>
               <div className="text-center mt-3">
                 <p style={{ color: "black" }}>
-                  Don't have an account?
-                  <Link to="/signup">
+                  Already have an account?
+                  <Link to="/login">
                     <span className="text-blue-400 cursor-pointer">
                       {" "}
-                      Sign up
+                      Sign in
                     </span>
                   </Link>
                 </p>
@@ -248,8 +379,10 @@ const Login = () => {
           </div>
         </div>
       </form>
+
+      <div className="border "></div>
     </>
   );
 };
 
-export default Login;
+export default Signup;

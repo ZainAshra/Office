@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import 'react-phone-number-input/style.css'
 import './index.css';
 import {persiststor} from './store'
 import { PersistGate } from 'redux-persist/integration/react';
