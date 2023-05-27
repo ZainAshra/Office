@@ -27,14 +27,8 @@ import Badge from "@mui/material/Badge";
 import { styled } from "@mui/material/styles";
 import IconButton from "@mui/material/IconButton";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
- 
-} from "react-router-dom";
-import sampleimage from "../images/productimg.png"
-
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import sampleimage from "../images/productimg.png";
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   "& .MuiBadge-badge": {
@@ -58,72 +52,72 @@ function HeaderBootstap(props) {
       {!showSearch && <Search />}
 
       {showSearch && (
-        <Navbar className="b_navbar" expand="lg">
-          <Container fluid>
-            <Navbar.Brand href="#" className="flex flex-row">
-           
-              <img
-              className=""
-                src={drawer}
-                alt="ima"
-                onClick={() => {
-                  setshowmainmenu(true);
-                  
-                }}
-              />{" "}
-               <Link to="/">
-              <img src={companylogo} alt=""   />
-              </Link>
-            </Navbar.Brand>
-            <Navbar.Toggle aria-controls="navbarScroll" />
-            <Navbar.Collapse id="navbarScroll">
-              <Nav
-                className="me-auto my-2 my-lg-0"
-                style={{ maxHeight: "100px" }}
-                navbarScroll
-              >
-                <Nav.Link className="headerwords" href="">
-                  Flash Deals
-                </Nav.Link>
-
-                <NavDropdown
-                  title={<span className="text-white ">Karachi</span>}
-                  id="navbarScrollingDropdown"
+        <>
+          <Navbar className="b_navbar" expand="lg">
+            <Container fluid>
+              <Navbar.Brand href="#" className="flex flex-row">
+                <img
+                  className=""
+                  src={drawer}
+                  alt="ima"
+                  onClick={() => {
+                    setshowmainmenu(true);
+                  }}
+                />{" "}
+                <Link to="/">
+                  <img src={companylogo} alt="" />
+                </Link>
+              </Navbar.Brand>
+              <Navbar.Toggle aria-controls="navbarScroll" />
+              <Navbar.Collapse id="navbarScroll">
+                <Nav
+                  className="me-auto my-2 my-lg-0"
+                  style={{ maxHeight: "100px" }}
+                  navbarScroll
                 >
-                  <NavDropdown.Item href="#action3">Karachi</NavDropdown.Item>
-                  <NavDropdown.Item href="#action4">Lahore</NavDropdown.Item>
+                  <Nav.Link className="headerwords" href="">
+                    Flash Deals
+                  </Nav.Link>
 
-                  <NavDropdown.Item href="#action5">Islamabad</NavDropdown.Item>
-                </NavDropdown>
-                {/* <Nav.Link href="#" disabled>
+                  <NavDropdown
+                    title={<span className="text-white ">Karachi</span>}
+                    id="navbarScrollingDropdown"
+                  >
+                    <NavDropdown.Item href="#action3">Karachi</NavDropdown.Item>
+                    <NavDropdown.Item href="#action4">Lahore</NavDropdown.Item>
+
+                    <NavDropdown.Item href="#action5">
+                      Islamabad
+                    </NavDropdown.Item>
+                  </NavDropdown>
+                  {/* <Nav.Link href="#" disabled>
               Link
             </Nav.Link> */}
-              </Nav>
-              <Form className="d-flex">
-                <div class="conatiner">
-                  <div class="row">
-                    <div class="col">
-                      {" "}
-                      <a href="">
-                        <img
-                          src={searchIcon}
-                          alt=""
-                          onClick={(e) => {
-                            e.preventDefault();
-                            setshowSearch(false);
-                          }}
-                        />
-                      </a>
-                    </div>
-                    <div class="col">
-                      <a href="">
-                        <img src={whastappicon} alt="" />
-                      </a>
-                    </div>
-                    <div class="col">
-                  
-                      <Link to="/shoppingCart" className="cart-link">
-                        {/* {cardsCount > 0 && (
+                </Nav>
+                <Form className="d-flex">
+                  <div class="conatiner">
+                    <div class="row">
+                      <div class="col">
+                        {" "}
+                        <a href="">
+                          <img
+                            src={searchIcon}
+                            alt=""
+                            onClick={(e) => {
+                              e.preventDefault();
+                              setshowSearch(false);
+                            }}
+                          />
+                        </a>
+                      </div>
+                      <div class="col">
+                        <a href="">
+                          <img src={whastappicon} alt="" />
+                        </a>
+                      </div>
+                      <div class="col">
+                        <Link to="/shoppingCart" className="cart-link">
+                          {/* {cardsCount > 0 && (
                           <Badge pill bg="primary" className="cart-badge">
                             <span className="count">{cardsCount}</span>
                           </Badge>
@@ -131,42 +125,54 @@ function HeaderBootstap(props) {
 
                         <FaShoppingCart size={24} className="cart-icon" /> */}
 
-                        <IconButton color="info" aria-label="cart">
-                          <StyledBadge
-                            badgeContent={cardsCount}
-                            color="secondary"
-                          >
-                            <ShoppingCartIcon />
-                          </StyledBadge>
-                        </IconButton>
-                      </Link>
-                      
-                    </div>
+                          <IconButton color="info" aria-label="cart">
+                            <StyledBadge
+                              badgeContent={cardsCount}
+                              color="secondary"
+                            >
+                              <ShoppingCartIcon />
+                            </StyledBadge>
+                          </IconButton>
+                        </Link>
+                      </div>
 
-                    <div class="col">
-                    <Link to='/login'>
-                      <Button
-                        className="loginbtn"
-                        type="button"
-                        variant="outline-success"
-                      >
-                        Login
-                      </Button>
-                      </Link>
-                    </div>
-                    <div class="col">
-                    <Link to="signup">
-                      <Button id="signupbtn" variant="outline-success">
-                        Signup
-                      </Button>
-                      </Link>
+                      <div class="col">
+                        <Link to="/login">
+                          <Button
+                            className="loginbtn"
+                            type="button"
+                            variant="outline-success"
+                          >
+                            Login
+                          </Button>
+                        </Link>
+                      </div>
+                      <div class="col">
+                        <Link to="signup">
+                          <Button id="signupbtn" variant="outline-success">
+                            Signup
+                          </Button>
+                        </Link>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </Form>
-            </Navbar.Collapse>
-          </Container>
-        </Navbar>
+                </Form>
+              </Navbar.Collapse>
+            </Container>
+          </Navbar>
+          <div
+            className="text-gray-900"
+            style={{
+              backgroundColor: "#F9A01A",
+              weight: "400",
+              height: "30px",
+              background:
+                "linear-gradient(90deg, #F9A01A 1.09%, #F9C21A 21.7%, #F9C21A 77.85%, #F9A01A 100%)",
+            }}
+          >
+            <marquee>Scroll Kro Shop Kro Download The App Now</marquee>
+          </div>
+        </>
       )}
 
       {showmainmenu && (

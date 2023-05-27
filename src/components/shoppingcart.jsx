@@ -86,7 +86,7 @@ const ShoppingCart = () => {
 
   const increaseValue = (x)=>{
           if (valuecount < x ){
-            setValuecount(valuecount+1)
+            setValuecount(valuecount +1) 
           }
   }
 

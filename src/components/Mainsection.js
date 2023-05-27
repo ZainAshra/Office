@@ -118,17 +118,17 @@ export default function Main(newcount) {
 
       {/* all Catgories cards */}
       <div>
-        <h1 className="catheading">Shop Our Top Catgories</h1>
+        <h1 className="catheading mb-2">Shop Our Top Catgories</h1>
       </div>
 
-      <div className="catcardsparent" >
+      <div className="catcardsparent gap-2 fancyscroll mb-5" >
         {productcards?.map((e, i) => {
           return (
             <div
-              className=" catcarddiv text-center justify-center border gap-2 "
-              style={{ backgroundColor: getRandomColor(), marginTop: "-10px" ,marginLeft:"10pxf" }}
+              className=" catcarddiv text-center justify-center   border-2 rounded "
+              style={{ backgroundColor: getRandomColor(), marginTop: "-10px" ,marginLeft:"10px" }}
               key={i}
-            ><div> <h3 className="text-gray-900 font-bold">{e?.name}</h3></div>
+            ><div> <h3 className="text-gray-900 font-bold ">{e?.name}</h3></div>
               
               <div className=""><img src={e?.imageUrl} alt="" style={{height:"120px"}}/></div>
             </div>

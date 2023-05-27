@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import HeaderBootstap from "./mainheader";
 import { Rating } from "@mui/material";
@@ -8,9 +8,16 @@ import { addtocartdata } from "../redux/actions";
 const Choisecat = () => {
   const dispatch = useDispatch();
   const dat = useSelector((state) => state.choiseCatReducer);
-  console.log(dat[0]);
+  console.log(dat[0]?.length);
   const [value, setValue] = useState(0);
+  const [totalpages,settotalpages]=useState()
 
+ 
+
+  useEffect(()=>{
+    settotalpages(Math.ceil(dat[0]?.length / 30) )
+  },[])
+  
   const addToCartBtn = (data) => {
   
     dispatch(addtocartdata('ADDTOCART',data))

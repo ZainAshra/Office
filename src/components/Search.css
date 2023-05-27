@@ -44,3 +44,14 @@
 
     
   }
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background-color: #d6cbcb;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background-color: #5e85bc;
+  }
