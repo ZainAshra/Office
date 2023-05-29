@@ -42,7 +42,7 @@ export default function Search() {
       setSearchresult([]);
     }
   }, [userdata]);
-  console.log(searchresult, "result");
+  // console.log(searchresult, "result");
 
   const getcategoryId = (id) => {
     dispatch(choiseCat(id, "CHOISECAT"));
