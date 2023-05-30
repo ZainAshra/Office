@@ -4,8 +4,12 @@ import "./allcards.css";
 // import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { addtocartdata } from "../redux/actions";
+import { useState } from "react";
+import ProductDescription from "./productDescription";
+
 
 export const Allcards = (props) => {
+  const [singleProduct,setSingleProduct] = useState([])
   const dispatch = useDispatch();
 
 
@@ -15,24 +19,25 @@ export const Allcards = (props) => {
   };
 
 
+console.log(singleProduct)
 
-
-
- 
 
   return (
     <>
-      <Card style={{ width: "15rem", hight: "10remt", border: "none" }}>
+   
+      <Card style={{ width: "15rem", hight: "10remt", border: "none" }} >
         <Card.Img
+        onClick={()=>{setSingleProduct(props.alldata)}}
           style={{ border: "1px solid lightgrey", borderRadius: "14px" }}
           variant="top"
           src={props.image}
+          className="cursor-pointer "
         />
         <Card.Body>
           <Card.Title>{props.brand}</Card.Title>
           <Card.Text>{props.title}</Card.Text>
           <Button
-          className="lg:bg-blue-400"
+          className="bg-blue-400"
            
             onClick={() => {
               addToCartBtn(props.alldata);
@@ -46,6 +51,7 @@ export const Allcards = (props) => {
 
         </Card.Body>
       </Card>
+     
     </>
   );
 };

@@ -259,21 +259,21 @@ const ProductDescription = () => {
           </div>
 
           <div className="mt-4 font-bold">Picture/Video (optional)</div>
+          <div type="" className="bg-blue-400 h-20 w-24 relative mb-2">
+  <label htmlFor="fileInput" className="cursor-pointer">
+    <img src={fileupload} className="bg-slate-50 w-100" style={{ zIndex: "100" }} alt="" />
+    <input id="fileInput" className="absolute top-0 w-9/10" type="file" style={{ zIndex: "-100" }} />
+  </label>
+  
+</div>
 
-          <div type="file" className="bg-blue-400 h-20 w-20">
-
-            <label class="block mb-2 relative overflow-hidden" for="file_input">
-              <img src={fileupload} alt="Upload" />
-              <input
-                class="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-                id="file_input"
-                type="file"
-              />
-            </label>
+          <div >
+        
+            
           </div>
 
 
-          <div className="flex mt-2">
+          <div className="flex mt-3">
             <div className="mr-3"><Button color="secondary" variant="contained">Cancle</Button></div>
             <div ><Button variant="contained">Submit</Button></div>
           </div>

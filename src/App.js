@@ -10,6 +10,7 @@ import Allcards from './components/allcards';
 import { Practice } from './components/practice';
 import ShoppingCart from './components/shoppingcart';
 import Choisecat from './components/choisecat';
+import Footer from "./components/footer.jsx"
 import {
   BrowserRouter as Router,
   Switch,
@@ -76,6 +77,7 @@ function App() {
         </Switch>
         
 </Router>
+<Footer/>
 
    </>
   )

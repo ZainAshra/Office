@@ -15,6 +15,7 @@ import { useDispatch, useSelector } from "react-redux";
 import _ from "lodash";
 import { allcardsData } from "../redux/reducers/allcardsDataReducer";
 import { cardsData, categoriesData } from "../redux/actions";
+import ProductDescription from "./productDescription";
 
 
 
@@ -183,7 +184,7 @@ export default function Main(newcount) {
         );
       })}
 
-      <Footer />
+     
     </>
   );
 }
