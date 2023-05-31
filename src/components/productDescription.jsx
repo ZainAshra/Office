@@ -1,26 +1,61 @@
-import React, { useState } from "react";
-import HeaderBootstap from "./mainheader";
-import { Router } from "react-router-dom/cjs/react-router-dom.min";
-import image from "../images/productimg.png";
+import React, { useState, useRef } from "react";
+import { useSelector } from "react-redux";
+import { Rating, TextField, Typography, Button } from "@mui/material";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import { Rating, TextField, Typography } from "@mui/material";
-import fileupload from "..//images/fileupload.PNG"
-import Button from '@mui/material/Button';
+import HeaderBootstap from "./mainheader";
 import Footer from "./footer";
+import image from "../images/productimg.png";
+import fileupload from "../images/fileupload.PNG";
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
 const ProductDescription = () => {
-  const [value ,setValue]= useState(0)
+  const [value, setValue] = useState(0);
+  const [Productdata, setProductdata] = useState();
+  const [reviews, setReviews] = useState([]);
+
+  const data = useSelector(
+    (state) => state?.ProductDescriptionReducer.PRODUCTDESCRIPTION
+  );
+
+  useState(() => {
+    setProductdata(data);
+  }, [data]);
+
+  const titleRef = useRef();
+  const reviewRef = useRef();
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const title = titleRef?.current?.value;
+    const review = reviewRef?.current?.value;
+    console.log(title, "title");
+    console.log(review, "review");
+
+    const newReview = {
+      title,
+      review,
+    };
+    // setReviews([...reviews, newReview]);
+
+    Promise.all([title, review, setReviews([...reviews, newReview])]);
+  };
+  console.log(reviews);
+
   return (
     <>
-    <div>
-      <HeaderBootstap/>
-    </div>
+      <div>
+        <HeaderBootstap />
+      </div>
       <div className="grid md:grid-cols-2 sm:grid-cols-1 place-content-center  mt-6 mx-auto gap-5 ">
         {/* /image div */}
-        <div className="grid place-content-center   ">
-          <div className="mt-8">
-            <img src={image} alt="" />
+        <div className="grid justify-items-center   ">
+          <div className="mt-8 grid  justify-items-center text-center">
+            <img
+              className="w-50 border-2 shadow-md rounded-xl "
+              src={Productdata?.imageUrl}
+              alt=""
+            />
           </div>
 
           <div className="">carousel</div>
@@ -28,76 +63,38 @@ const ProductDescription = () => {
 
         {/* product deatil div */}
         <div className=" grid sm:justify-center   lg:justify-start md:justify-start ">
-          <div className="flex flex-row mt-8  ">
-            <div className="text-gray-900 text-lg  "><b> Brand:</b> NYX </div>
-            <br/>
-            <div className="ml-8 w-12 bg-sky-500/100 text-center rounded">
+          <div className="flex flex-row sm:mt-3 md:mt-8  ">
+            <div className="text-gray-900 text-lg  ">
+              <b> Brand:</b> {Productdata?.brand}{" "}
+            </div>
+            <br />
+            <div className="ml-8 w-12 bg-sky-500/100 text-center rounded h-8">
               FBP
             </div>
           </div>
 
-          <div className="text-gray-900  text-2xl font-bold mb-2">
-            Nyx Soft Matte Long-Lasting <br /> Lip Cream 8ml <br/>
+          <div className="text-gray-900  text-2xl font-bold mb-0">
+            {Productdata?.sku} <br /> <br />
           </div>
           <div class="flex items-center">
-            <svg
-              aria-hidden="true"
-              class="w-5 h-5 text-yellow-400"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <title>First star</title>
-              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-            </svg>
-            <svg
-              aria-hidden="true"
-              class="w-5 h-5 text-yellow-400"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <title>Second star</title>
-              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-            </svg>
-            <svg
-              aria-hidden="true"
-              class="w-5 h-5 text-yellow-400"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <title>Third star</title>
-              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-            </svg>
-            <svg
-              aria-hidden="true"
-              class="w-5 h-5 text-yellow-400"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <title>Fourth star</title>
-              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-            </svg>
-            <svg
-              aria-hidden="true"
-              class="w-5 h-5 text-gray-300 dark:text-gray-500"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <title>Fifth star</title>
-              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-            </svg>
+            <Rating
+              name="simple-controlled"
+              className="ml-2"
+              value={Productdata?.avgRating}
+              onChange={(event, newValue) => {
+                setValue(newValue);
+              }}
+            />
             <p class="ml-2 text-sm font-medium text-gray-500 dark:text-gray-400">
-              4.95 out of 5
+              {Productdata?.avgRating} out of 5
             </p>
           </div>
           <div className="flex flex-row">
-            <div className="text-4xl text-blue-900 font-bold ">PKR 1099</div>
+            <div className="text-4xl text-blue-900 font-bold ">
+              PKR {Productdata?.minPrice}
+            </div>
             <div className=" mt-2 ml-6 text-2xl text-red-600 italic">
-              <del>1099</del>
+              <del>{Productdata?.maxPrice ? Productdata?.maxPrice : ""}</del>
             </div>
           </div>
 
@@ -109,7 +106,7 @@ const ProductDescription = () => {
 
           <div className="flex flex-raw">
             <div className=" ml-1 rounded-full w-7 h-7 bg-blue-500 text-blue-500   hover:outline outline-blue-400 outline-2 outline-offset-2 "></div>
-            <div className="ml-2 rounded-full w-7 h-7 bg-green-500 text-blue-500 text-blue-500  hover:outline outline-green-400 outline-2 outline-offset-2 "></div>
+            <div className="ml-2 rounded-full w-7 h-7 bg-green-500 text-blue-500   hover:outline outline-green-400 outline-2 outline-offset-2 "></div>
 
             <div className="ml-2 rounded-full w-7 h-7 bg-yellow-500 text-blue-500 hover:outline outline-yellow-400 outline-2 outline-offset-2 "></div>
             <div className="ml-2 rounded-full w-7 h-7 bg-red-900 text-blue-500 hover:outline outline-red-900 outline-2 outline-offset-2 "></div>
@@ -223,66 +220,126 @@ const ProductDescription = () => {
       {/* after the onclick to add reviews */}
 
       <div className="grid ">
-        <div className="mt-3 w-3/4 text-blue-900  m-auto">
-          <div className="font-bold">Rating </div>
-          <div>
-            <Typography component="legend"></Typography>
-            <Rating
-              name="simple-controlled"
-              value={value}
-              onChange={(event, newValue) => {
-                setValue(newValue);
-              }}
-            />
-          </div>
-          <div className="font-bold">Review Title</div>
-          <div className="mt-3 ">
-            {" "}
-            <TextField
-              className="w-100 h-10"
-              id="outlined-textarea"
-              label="Enter Your Review title"
-              placeholder="Enter Your Review title"
-              multiline
-            />
-          </div>
+        <form onSubmit={handleSubmit}>
+          <div className="mt-3 w-3/4 text-blue-900  m-auto">
+            <div className="font-bold">Rating </div>
+            <div>
+              <Typography component="legend"></Typography>
+              <Rating
+                name="simple-controlled"
+                value={value}
+                onChange={(event, newValue) => {
+                  setValue(newValue);
+                }}
+              />
+            </div>
+            <div className="font-bold">Review Title</div>
+            <div className="mt-3 ">
+              <TextField
+                ref={titleRef}
+                onChange={(e) => {
+                  titleRef.current.value = e.target.value;
+                }}
+                className="w-100 h-10"
+                id="outlined-textarea"
+                label="Enter Your Review title"
+                placeholder="Enter Your Review title"
+                multiline
+                name="title"
+              />
+            </div>
 
-          <div className="mt-4 font-bold">Review</div>
-          <div className="mt-3 mb-2">
-            <TextField
-              className="w-full h-full"
-              id="outlined-textarea"
-              label="Review"
-              placeholder="Enter Your Review here"
-              multiline
-            />
+            <div className="mt-4 font-bold">Review</div>
+            <div className="mt-3 mb-2">
+              <TextField
+                ref={reviewRef}
+                className="w-full h-full"
+                id="outlined-textarea"
+                label="Review"
+                placeholder="Enter Your Review here"
+                multiline
+                name="review"
+                onChange={(e) => {
+                  reviewRef.current.value = e.target.value;
+                }}
+              />
+            </div>
+
+            <div className="mt-4 font-bold">Picture/Video (optional)</div>
+
+            <div type="" className="bg-blue-400 h-20 w-24 relative mb-2">
+              <label htmlFor="fileInput" className="cursor-pointer">
+                <img
+                  src={fileupload}
+                  className="bg-slate-50 w-100"
+                  style={{ zIndex: "100" }}
+                  alt=""
+                />
+                <input
+                  id="fileInput"
+                  className="absolute top-0 w-9/10"
+                  type="file"
+                  style={{ zIndex: "-100" }}
+                  
+                />
+              </label>
+            </div>
+
+            <div className="flex mt-3">
+              <div className="mr-3">
+                <Button color="secondary" variant="contained">
+                  Cancle
+                </Button>
+              </div>
+              <div>
+                <Button type="submit" variant="contained">
+                  Submit
+                </Button>
+              </div>
+            </div>
+
+            <br />
+            <hr />
           </div>
+        </form>
+        <div className=" grid  ml-20 mr-28 gap-y-2 ">
+          {reviews &&
+            reviews.map((e, i) => {
+              return (
+                <><div key={i} className="border grid rounded-2xl gap-y-2 mt-4">
+                  <div className="ml-2 mt-2">
+                    <Rating name="read-only" value={value} readOnly />
+                  </div>
+                  <div className=" flex flex-row justify-between ml-3 text-blue-950  ">
+                  <div><h2>
+                      {" "}
+                      <span className="font-bold">by Person</span>{" "}
+                      <span className="text-sm text-green-600">{`(Verified Purchase)`}</span>
+                    </h2></div>
+                  <div className="mr-2 "><DeleteForeverIcon className="cursor-pointer "/> </div>
+                    
+                  </div>
+                  <div>
+                    <h3 className="font-bold  ml-3 text-blue-900">{e?.title}</h3>
+                  </div>
+                  <div>
+                    <h1 className=" ml-3 text-blue-800">{e?.review}</h1>
+                  </div>
+                  <div className="ml-3">
+                    <img src="" alt="ima" />
+                  </div>
+                  </div>
+                </>
+              );
+            })}
 
-          <div className="mt-4 font-bold">Picture/Video (optional)</div>
-          <div type="" className="bg-blue-400 h-20 w-24 relative mb-2">
-  <label htmlFor="fileInput" className="cursor-pointer">
-    <img src={fileupload} className="bg-slate-50 w-100" style={{ zIndex: "100" }} alt="" />
-    <input id="fileInput" className="absolute top-0 w-9/10" type="file" style={{ zIndex: "-100" }} />
-  </label>
-  
-</div>
-
-          <div >
-        
-            
-          </div>
-
-
-          <div className="flex mt-3">
-            <div className="mr-3"><Button color="secondary" variant="contained">Cancle</Button></div>
-            <div ><Button variant="contained">Submit</Button></div>
-          </div>
-<br/>
-          <hr/>
-          
+           
         </div>
+        <div className="">
+          <button className="bg-blue-950">View ALL</button>
+        </div>
+       
       </div>
-
     </>
   );
 };

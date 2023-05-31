@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { addtocartdata } from "../redux/actions";
 import { useState } from "react";
 import ProductDescription from "./productDescription";
+import {productDescriptionAction} from "../redux/actions/index.js"
 
 
 export const Allcards = (props) => {
@@ -18,8 +19,10 @@ export const Allcards = (props) => {
     dispatch(addtocartdata('ADDTOCART',data))
   };
 
-
-console.log(singleProduct)
+  const SingleProduct = (data)=>{
+    console.log(data)
+    dispatch(productDescriptionAction("PRODUCTDESCRIPTION",data))
+  }
 
 
   return (
@@ -27,7 +30,7 @@ console.log(singleProduct)
    
       <Card style={{ width: "15rem", hight: "10remt", border: "none" }} >
         <Card.Img
-        onClick={()=>{setSingleProduct(props.alldata)}}
+        onClick={()=>{SingleProduct(props.alldata)}}
           style={{ border: "1px solid lightgrey", borderRadius: "14px" }}
           variant="top"
           src={props.image}

@@ -145,3 +145,12 @@ export const allproductsdata = (actionName) => {
   }
 };
 
+export const productDescriptionAction = (type,data)=>{
+    return(dispatch)=>{
+      dispatch({
+        type:type,
+        payload:data
+      })
+    }
+}
+

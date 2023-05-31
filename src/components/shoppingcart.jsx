@@ -10,6 +10,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import CallIcon from "@mui/icons-material/Call";
 import DeleteIcon from '@mui/icons-material/Delete';
 import _ from "lodash";
+import Footer from "./footer";
 const ShoppingCart = () => {
   const dispatch = useDispatch();
   const [cardsCount, setCardsCount] = useState(0);
@@ -97,6 +98,7 @@ const ShoppingCart = () => {
   }
   return (
     <>
+    <div>
       <HeaderBootstap
         cardsCount={cardsCount}
         className="sticky-top"
@@ -361,7 +363,7 @@ const ShoppingCart = () => {
                     </div>
                     <div className="mr-2">
                       {" "}
-                      <AutorenewIcon />
+                      <AutorenewIcon className="cursor-pointer" />
                     </div>
                   </div>
                   <div className="flex ml-2 mt-3">
@@ -460,7 +462,9 @@ const ShoppingCart = () => {
             </div>
           </div>
         </div>
+
       )}
+      </div>
     </>
   );
 };
