@@ -44,9 +44,9 @@ function Slider() {
         prevIcon={null}
       >
         {isMobile
-          ? mobileBannersData?.map((item) => {
+          ? mobileBannersData?.map((item,i) => {
               return (
-                <Carousel.Item>
+                <Carousel.Item key={i}>
                   <img
                     style={{
                       width: "100%",
@@ -60,9 +60,9 @@ function Slider() {
                 </Carousel.Item>
               );
             })
-          : webBannersData?.map((item) => {
+          : webBannersData?.map((item,i) => {
               return (
-                <Carousel.Item style={{ marginTop: "-4rem" }}>
+                <Carousel.Item key={i} style={{ marginTop: "-4rem" }}>
                   <img
                     style={{
                       width: "100%",

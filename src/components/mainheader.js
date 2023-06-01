@@ -13,9 +13,8 @@ import companylogo from "../images/company_logo.png";
 import searchIcon from "../images/search.png";
 import whastappicon from "../images/whastapp.png";
 
-import cart from "../images/cart.png";
 // import { Dropdown, NavLink } from "react-bootstrap";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Search from "./search";
 import { Link } from "react-router-dom";
 // import Header from "./Sidemenu";
@@ -27,8 +26,7 @@ import Badge from "@mui/material/Badge";
 import { styled } from "@mui/material/styles";
 import IconButton from "@mui/material/IconButton";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import sampleimage from "../images/productimg.png";
+
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   "& .MuiBadge-badge": {
@@ -95,9 +93,9 @@ function HeaderBootstap(props) {
             </Nav.Link> */}
                 </Nav>
                 <Form className="d-flex">
-                  <div class="conatiner">
-                    <div class="row">
-                      <div class="col">
+                  <div className="conatiner">
+                    <div className="row">
+                      <div className="col">
                         {" "}
                         <a href="">
                           <img

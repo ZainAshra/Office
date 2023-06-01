@@ -1,25 +1,40 @@
 import React, { useState, useRef } from "react";
-import { useSelector } from "react-redux";
+import {Link} from "react-router-dom"
+import { useDispatch, useSelector } from "react-redux";
 import { Rating, TextField, Typography, Button } from "@mui/material";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
 import HeaderBootstap from "./mainheader";
 import Footer from "./footer";
 import image from "../images/productimg.png";
 import fileupload from "../images/fileupload.PNG";
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import { addtocartdata, productDescriptionAction, similarProductsAction } from "../redux/actions";
 
 const ProductDescription = () => {
   const [value, setValue] = useState(0);
   const [Productdata, setProductdata] = useState();
   const [reviews, setReviews] = useState([]);
-
+  const [similarProducts,setSimilarProducts]= useState()
+  const similardata= useSelector((state)=>state?.similarProductsReducer?.SIMILARPRODUCTS)
+  
+const dispatch = useDispatch()
   const data = useSelector(
     (state) => state?.ProductDescriptionReducer.PRODUCTDESCRIPTION
   );
+  const addToCartBtn = (data) => {
+    dispatch(addtocartdata('ADDTOCART',data))
+  };
+  const SingleProduct = (e)=>{
+    
+    dispatch(productDescriptionAction("PRODUCTDESCRIPTION",e))
+    dispatch(similarProductsAction("SIMILARPRODUCT",e?.categoryId))
+  }
 
   useState(() => {
     setProductdata(data);
+    setSimilarProducts(similardata)
   }, [data]);
 
   const titleRef = useRef();
@@ -133,6 +148,7 @@ const ProductDescription = () => {
             <div className="col-9 ">
               <button
                 type="button"
+                onClick={()=>addToCartBtn(Productdata)}
                 class=" w-70 h-10 text-gray-900 mt-2 bg-[#F7BE38] hover:bg-[#F7BE38]/90 focus:ring-4 focus:outline-none focus:ring-[#F7BE38]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#F7BE38]/50 mr-2 mb-2"
               >
                 {/* <svg class="w-4 h-4 mr-2 -ml-1" aria-hidden="true" focusable="false" data-prefix="fab"  role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="currentColor" d="M111.4 295.9c-3.5 19.2-17.4 108.7-21.5 134-.3 1.8-1 2.5-3 2.5H12.3c-7.6 0-13.1-6.6-12.1-13.9L58.8 46.6c1.5-9.6 10.1-16.9 20-16.9 152.3 0 165.1-3.7 204 11.4 60.1 23.3 65.6 79.5 44 140.3-21.5 62.6-72.5 89.5-140.1 90.3-43.4 .7-69.5-7-75.3 24.2zM357.1 152c-1.8-1.3-2.5-1.8-3 1.3-2 11.4-5.1 22.5-8.8 33.6-39.9 113.8-150.5 103.9-204.5 103.9-6.1 0-10.1 3.3-10.9 9.4-22.6 140.4-27.1 169.7-27.1 169.7-1 7.1 3.5 12.9 10.6 12.9h63.5c8.6 0 15.7-6.3 17.4-14.9 .7-5.4-1.1 6.1 14.4-91.3 4.6-22 14.3-19.7 29.3-19.7 71 0 126.4-28.8 142.9-112.3 6.5-34.8 4.6-71.4-23.8-92.6z"></path></svg> */}
@@ -335,10 +351,39 @@ const ProductDescription = () => {
 
            
         </div>
-        <div className="">
-          <button className="bg-blue-950">View ALL</button>
+        <div className=" ml-36 mt-4">
+          <button className="bg-blue-950 rounded-lg p-2 focus:bg-blue-600 ">View ALL <ArrowCircleRightIcon/></button>
         </div>
+       <div className=" mt-4 sm:ml-3 mr-3 md:ml-24 md:mr-20  ">
+        <h1 className="font-bold text-3xl text-blue-950 font-serif">Similar Products</h1>
+
+        <div
        
+      
+        
+         className="grid sm:grid-cols-2 md:grid-cols-6 gap-3 mt-3 container  ">
+        {similarProducts?.map((e,i)=>{
+          return(
+            <div style={{}}>
+            <div   className="grid mb-2 ">
+            <Link to="/src/components/productDescription.jsx">
+              <div   onClick={()=>{SingleProduct(e)}} className="border-2 sm:p-3 sm:h-50 md:h-100 md:p-3 rounded-lg"><img src={e.imageUrl} alt=""/></div></Link>
+              <div className="text-md font-bold text-blue-950 font-poppins"><p>{e.brand}</p></div>
+              <div className="text-sm text-blue-950 font-poppins h-10"><p>{e.title}</p></div>
+              <div className="flex flex-row justify-between">
+                <div><button onClick={() => {
+              addToCartBtn(e);
+            }} className="btn btn-warning text-gray-100 mt-1 focus:text-gray-900 p-1 rounded-md">Add to cart</button></div>
+                <div className="text-sm font-bold text-blue-950 font-poppins mt-3"><p>PKR {e.minPrice}</p></div>
+              </div>
+
+            </div>
+            </div>
+          )
+        })}
+            
+        </div>
+       </div>
       </div>
     </>
   );

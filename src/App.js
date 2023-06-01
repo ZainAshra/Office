@@ -69,6 +69,10 @@ function App() {
          <Practice2/>
           </Route>
 
+          <Route path="/practice2">
+         <ProductDescription/>
+          </Route>
+
 
 
           <Route path="/">

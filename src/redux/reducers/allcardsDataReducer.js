@@ -18,3 +18,20 @@ export const allcardsData = (state = initialstate, action) => {
       return state;
   }
 };
+
+const similarproducrsdata = {
+  SIMILARPRODUCTS :[]
+}
+
+export const similarProductsReducer = (state = similarproducrsdata,action) => {
+  switch (action.type) {
+    case "SIMILARPRODUCT":
+      return {  SIMILARPRODUCTS: action.payload };
+  
+
+
+    default:
+      return state;
+  }
+}
+

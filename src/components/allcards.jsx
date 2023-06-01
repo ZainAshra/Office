@@ -1,9 +1,10 @@
 // this component will add after corrasole
 import { Button, Card } from "react-bootstrap";
 import "./allcards.css";
+import {Link} from "react-router-dom"
 // import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { addtocartdata } from "../redux/actions";
+import { addtocartdata, similarProductsAction } from "../redux/actions";
 import { useState } from "react";
 import ProductDescription from "./productDescription";
 import {productDescriptionAction} from "../redux/actions/index.js"
@@ -22,6 +23,7 @@ export const Allcards = (props) => {
   const SingleProduct = (data)=>{
     console.log(data)
     dispatch(productDescriptionAction("PRODUCTDESCRIPTION",data))
+    dispatch(similarProductsAction("SIMILARPRODUCT",data?.categoryId))
   }
 
 
@@ -29,6 +31,7 @@ export const Allcards = (props) => {
     <>
    
       <Card style={{ width: "15rem", hight: "10remt", border: "none" }} >
+      <Link to="/ProductDescription">
         <Card.Img
         onClick={()=>{SingleProduct(props.alldata)}}
           style={{ border: "1px solid lightgrey", borderRadius: "14px" }}
@@ -36,6 +39,7 @@ export const Allcards = (props) => {
           src={props.image}
           className="cursor-pointer "
         />
+        </Link>
         <Card.Body>
           <Card.Title>{props.brand}</Card.Title>
           <Card.Text>{props.title}</Card.Text>

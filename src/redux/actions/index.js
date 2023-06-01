@@ -154,3 +154,21 @@ export const productDescriptionAction = (type,data)=>{
     }
 }
 
+
+export const similarProductsAction = (actionName,id) => {
+  try {
+    return async (dispatch) => {
+      let response = await fetch(
+        `https://api.plentys.pk/api/v1/public/product/search?title=/&categoryId=${id}&minPrice=1&maxPrice=&productIds=&storeId=&brandId=&rating=&conditionId=&discountValue=&promotionId=&lookupShippingTypeId=&lookupAttributeValueIds=&freshBaazar=&exactDiscount=&cityId=1&orderBy=stockDesc&limit=60&page=1`
+      );
+      let parseData = await response.json();
+      dispatch({
+        type: actionName,
+        payload: parseData.data,
+      });
+      
+    };
+  } catch (error) {
+    console.log(error);
+  }
+};
