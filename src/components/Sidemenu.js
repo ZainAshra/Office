@@ -79,7 +79,7 @@ export default function Sidemenu() {
     }
   return (
     <>
-      <div className="bodydiv">
+      <div className="bodydiv " style={{zIndex:"-1"}}>
         <div className="maindiv">
           <h1 className="heading">Catgories</h1>
           {pardata?.map((item, index) => {

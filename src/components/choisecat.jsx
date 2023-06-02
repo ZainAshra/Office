@@ -13,13 +13,14 @@ const Choisecat = () => {
   const [value, setValue] = useState(0);
   const [totalpages, settotalpages] = useState();
   const [showProducts, setShowProducts] = useState();
+  const [minquantity, setminquantity] = useState(true)
 
   const [pagenumber, setPageNumber] = useState(1);
 
   useEffect(() => {
     settotalpages(Math.ceil(dat[0]?.length / 5));
   }, [totalpages]);
-
+  console.log(totalpages)
   for (let i = 1; i <= totalpages; i++) {
     btnsarry.push(i);
   }
@@ -112,70 +113,59 @@ const Choisecat = () => {
             );
           })}
         </div>
-
         {/* pagination */}
-{(totalpages === 6) || (totalpages > 0 && totalpages < 7)
- && (
-  
-    <>
-      
+        {totalpages === 6 ||
+          (totalpages > 0 && totalpages < 7 &&  (
+            <>
+              <div className=" text-gray-950 font-bold m-4 ">
+                <div className=" justify-end flex flex-row  mr-6 ">
+                  <button
+                    onClick={() => PreandNextBtn("previous")}
+                    className={
+                      pagenumber === 1 ? "hidden" : " bg-gray-300 p-2 rounded"
+                    }
+                  >
+                    Previous
+                  </button>
+                  {btnsarry?.map((x, i) => {
+                    return (
+                      <>
+                        <div className="" key={i}>
+                          <button
+                            href="#"
+                            onClick={() => {
+                              changeProducts(x);
+                            }}
+                            className={
+                              x === pagenumber
+                                ? " p-2 rounded  bg-gray-400 ml-2 mr-2 text-blue-700"
+                                : "p-2 rounded  bg-gray-300 ml-2 mr-2 hover:text-blue-700 hover:bg-gray-200"
+                            }
+                          >
+                            {" "}
+                            {x}
+                          </button>
+                        </div>
+                      </>
+                    );
+                  })}
 
-
-    <div className=" text-gray-950 font-bold m-4 ">
-          <div className=" justify-end flex flex-row  mr-6 ">
-            <button
-              onClick={() => PreandNextBtn("previous")}
-              className={
-                pagenumber === 1 ? "hidden" : " bg-gray-300 p-2 rounded"
-              }
-            >
-              Previous
-            </button>
-            {btnsarry?.map((x, i) => {
-              return (
-                <>
-                  <div className="" key={i}>
-                    <button
-                      href="#"
-                      onClick={() => {
-                        changeProducts(x);
-                      }}
-                      className={
-                        x === pagenumber
-                          ? " p-2 rounded  bg-gray-400 ml-2 mr-2 text-blue-700"
-                          : "p-2 rounded  bg-gray-300 ml-2 mr-2 hover:text-blue-700 hover:bg-gray-200"
-                      }
-                    >
-                      {" "}
-                      {x}
-                    </button>
-                  </div>
-                </>
-              );
-            })}
-
-            <button
-              onClick={() => PreandNextBtn("next")}
-              className={
-                pagenumber === totalpages
-                  ? "hidden"
-                  : " bg-gray-300 p-2 rounded"
-              }
-            >
-              Next
-            </button>
-          </div>
-        </div>
-
-
-
-
-    </>
-  )
- };
-       
-
-
+                  <button
+                    onClick={() => PreandNextBtn("next")}
+                    className={
+                      pagenumber === totalpages
+                        ? "hidden"
+                        : " bg-gray-300 p-2 rounded"
+                    }
+                  >
+                    Next
+                  </button>
+                </div>
+              </div>
+            </>
+          ))}
+        ;
+      {totalpages >2 && (
         <div className=" text-gray-950 font-bold m-4 ">
           <div className=" justify-end flex flex-row  mr-6 ">
             <button
@@ -186,17 +176,101 @@ const Choisecat = () => {
             >
               Previous
             </button>
-            <button onClick={()=>{changeProducts(1)}} className={pagenumber ===1 ?"  p-2 rounded  bg-gray-400 ml-2 mr-2 text-blue-700":"p-2 rounded  bg-gray-300 ml-2 mr-2 hover:text-blue-700 hover:bg-gray-200"}>1</button>
-           
-            <button onClick={()=>{changeProducts(2)}} className={pagenumber ===2 ? "p-2 rounded  bg-gray-400 ml-2 mr-2 text-blue-700 hover:bg-gray-200":"p-2 rounded  bg-gray-300 ml-2 mr-2 hover:text-blue-700 hover:bg-gray-200"}>{(pagenumber === 1 || pagenumber ===2) ||  totalpages > 2 ? `${2}`:""}</button>
-          
-                <button onClick={()=>{changeProducts(pagenumber)}} className={pagenumber > 2 && pagenumber < totalpages && pagenumber < totalpages-1 && totalpages > 2 ? "p-2 rounded  bg-gray-400 ml-2 mr-2 text-blue-700 ":"hidden"}> {pagenumber > 2 && pagenumber < totalpages && pagenumber < totalpages-1 && totalpages > 2 ? pagenumber :"" }</button>
-                <button onClick={()=>{changeProducts( pagenumber+1)}} className={pagenumber > 2 && pagenumber < totalpages && pagenumber < totalpages-2 && totalpages > 2 && pagenumber !== 2 ? "p-2 rounded  bg-gray-300 ml-2 mr-2 hover:text-blue-700 hover:bg-gray-200":"hidden"}> {pagenumber > 2 && pagenumber < totalpages && pagenumber < totalpages-1 && totalpages > 2  ? pagenumber+1 :"" }</button>
+            <button
+              onClick={() => {
+                changeProducts(1);
+              }}
+              className={
+                pagenumber === 1
+                  ? "  p-2 rounded  bg-gray-400 ml-2 mr-2 text-blue-700"
+                  : "p-2 rounded  bg-gray-300 ml-2 mr-2 hover:text-blue-700 hover:bg-gray-200"
+              }
+            >
+              1
+            </button>
 
-            <span >....</span>
-            <button onClick={()=>{changeProducts(totalpages-1)}} className={pagenumber === totalpages-1 ?"  p-2 rounded  bg-gray-400 ml-2 mr-2 text-blue-700":"p-2 rounded  bg-gray-300 ml-2 mr-2 hover:text-blue-700 hover:bg-gray-200"}>{totalpages > 3 ? totalpages-1 :""}</button>   
-            <button onClick={()=> changeProducts(totalpages)} className={pagenumber === totalpages ?"  p-2 rounded  bg-gray-400 ml-2 mr-2 text-blue-700":"p-2 rounded  bg-gray-300 ml-2 mr-2 hover:text-blue-700 hover:bg-gray-200"}>{totalpages}</button>
-           
+            <button
+              onClick={() => {
+                changeProducts(2);
+              }}
+              className={
+                pagenumber === 2
+                  ? "p-2 rounded  bg-gray-400 ml-2 mr-2 text-blue-700 hover:bg-gray-200"
+                  : "p-2 rounded  bg-gray-300 ml-2 mr-2 hover:text-blue-700 hover:bg-gray-200"
+              }
+            >
+              {pagenumber === 1 || pagenumber === 2 || totalpages > 2
+                ? `${2}`
+                : ""}
+            </button>
+
+            <button
+              onClick={() => {
+                changeProducts(pagenumber);
+              }}
+              className={
+                pagenumber > 2 &&
+                pagenumber < totalpages &&
+                pagenumber < totalpages - 1 &&
+                totalpages > 2
+                  ? "p-2 rounded  bg-gray-400 ml-2 mr-2 text-blue-700 "
+                  : "hidden"
+              }
+            >
+              {" "}
+              {pagenumber > 2 &&
+              pagenumber < totalpages &&
+              pagenumber < totalpages - 1 &&
+              totalpages > 2
+                ? pagenumber
+                : ""}
+            </button>
+            <button
+              onClick={() => {
+                changeProducts(pagenumber + 1);
+              }}
+              className={
+                pagenumber > 2 &&
+                pagenumber < totalpages &&
+                pagenumber < totalpages - 2 &&
+                totalpages > 2 &&
+                pagenumber !== 2
+                  ? "p-2 rounded  bg-gray-300 ml-2 mr-2 hover:text-blue-700 hover:bg-gray-200"
+                  : "hidden"
+              }
+            >
+              {" "}
+              {pagenumber > 2 &&
+              pagenumber < totalpages &&
+              pagenumber < totalpages - 1 &&
+              totalpages > 2
+                ? pagenumber + 1
+                : ""}
+            </button>
+
+            <span>....</span>
+            <button
+              onClick={() => {
+                changeProducts(totalpages - 1);
+              }}
+              className={
+                pagenumber === totalpages - 1
+                  ? "  p-2 rounded  bg-gray-400 ml-2 mr-2 text-blue-700"
+                  : "p-2 rounded  bg-gray-300 ml-2 mr-2 hover:text-blue-700 hover:bg-gray-200"
+              }
+            >
+              {totalpages > 3 ? totalpages - 1 : ""}
+            </button>
+            <button
+              onClick={() => changeProducts(totalpages)}
+              className={
+                pagenumber === totalpages
+                  ? "  p-2 rounded  bg-gray-400 ml-2 mr-2 text-blue-700"
+                  : "p-2 rounded  bg-gray-300 ml-2 mr-2 hover:text-blue-700 hover:bg-gray-200"
+              }
+            >
+              {totalpages}
+            </button>
 
             <button
               onClick={() => PreandNextBtn("next")}
@@ -210,18 +284,8 @@ const Choisecat = () => {
             </button>
           </div>
         </div>
-
-
-
-
-
-
-
-
-
-
-
-
+      )}
+        
       </div>
     </>
   );

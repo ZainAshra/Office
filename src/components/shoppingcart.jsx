@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import HeaderBootstap from "./mainheader";
-import { Button, Container } from "react-bootstrap";
-import crossIcon from "../images/cross icon.png";
+import { Button } from "react-bootstrap";
+
 import { addtocartdata } from "../redux/actions";
-import { cardsCount } from "../redux/actions";
+
 import AutorenewIcon from "@mui/icons-material/Autorenew";
 import HomeIcon from "@mui/icons-material/Home";
 import CallIcon from "@mui/icons-material/Call";
@@ -12,7 +12,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import emptycartimg from "..//images/Emptycardimg.png";
 import _ from "lodash";
 import { Link } from "react-router-dom";
-import Footer from "./footer";
+
 const ShoppingCart = () => {
   const dispatch = useDispatch();
   const [cardsCount, setCardsCount] = useState(0);
@@ -27,12 +27,20 @@ const ShoppingCart = () => {
 
   function sum() {
     for (var i = 0; i <= allSelectedCards?.length; i++) {
+
+     
       if (allSelectedCards[i]?.minPrice > 0) {
+        allSelectedCards[i].counter = 1;
         arr.push(allSelectedCards[i]?.minPrice);
+      }else{
+        // console.log()
       }
+
+
     }
     const sum = _.sum(arr);
     settotalBill(sum);
+    console.log(allSelectedCards,"zain")
   }
 
   const handleClick1 = (e) => {
@@ -42,19 +50,10 @@ const ShoppingCart = () => {
     setbtnbackground(false);
   };
 
-  // const handleClick2 = ()=>{
-  //   const btnid = document.getElementById("payment-btn2")
-  //   btnid.style.backgroundColor = 'blue';
-  //   console.log("dasdsdasdd")
-
-  // }
-
   useEffect(() => {
     sum();
-    // console.log(arr);
   }, [allSelectedCards]);
 
-  // console.log(arr);
   const removeAll = (e) => {
     setcardsdata([]);
     setCardsCount(0);
@@ -65,8 +64,6 @@ const ShoppingCart = () => {
   useEffect(() => {
     setcardsdata(allSelectedCards);
     setCardsCount(allSelectedCards.length);
-
-    // dispatch(addtocartdata("REMOVESINGLECART", cardsdata));
   }, []);
 
   const removeCart = (productid) => {
@@ -82,11 +79,14 @@ const ShoppingCart = () => {
   };
   setTimeout(() => {
     setCardsCount(allSelectedCards?.length);
-  }, 2000);
+  }, 1500);
 
   const increaseValue = (x) => {
-    if (valuecount < x) {
+    if (valuecount < x?.purchaseLimit) {
       setValuecount(valuecount + 1);
+      let a = totalbill + x?.minPrice;
+      settotalBill(a);
+    
     }
   };
 
@@ -95,6 +95,7 @@ const ShoppingCart = () => {
       setValuecount(valuecount - 1);
     }
   };
+  
   return (
     <>
       <div>
@@ -182,6 +183,7 @@ const ShoppingCart = () => {
                                   <div
                                     className="row"
                                     style={{ height: "15rem" }}
+                                    key={i}
                                   >
                                     <div className="col-5  justify-content-center">
                                       <div className="container">
@@ -242,9 +244,7 @@ const ShoppingCart = () => {
                                             <button
                                               className="btn btn-outline-secondary"
                                               type="button"
-                                              onClick={() =>
-                                                increaseValue(x.purchaseLimit)
-                                              }
+                                              onClick={() => increaseValue(x)}
                                             >
                                               +
                                             </button>
@@ -375,7 +375,7 @@ const ShoppingCart = () => {
                   {/* checkoutl */}
 
                   <div
-                    className="mt-8 rounded-lg grid gap-2 "
+                    className="mt-8 rounded-lg grid gap-2"
                     style={{ backgroundColor: "#0B223F", color: "white" }}
                   >
                     <div>

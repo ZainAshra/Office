@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import HeaderBootstap from "./mainheader";
+import {Link} from "react-router-dom";
 import "./section.css";
 import bagimg from "../images/bag.png";
 import bagimg2 from "../images/bag2.png";
@@ -14,23 +15,12 @@ import Allcards from "./allcards";
 import { useDispatch, useSelector } from "react-redux";
 import _ from "lodash";
 import { allcardsData } from "../redux/reducers/allcardsDataReducer";
-import { cardsData, categoriesData } from "../redux/actions";
+import { cardsData, categoriesData, choiseCat } from "../redux/actions";
 import ProductDescription from "./productDescription";
 
 
 
-const cat = [
-  "product",
-  "product",
-  "product",
-  "product",
-  "product",
-  "product",
-  "product",
-  "product",
-  "product",
-  "product",
-];
+
 
 const getRandomColor = () => {
   const letters = "0123456789ABCDEF";
@@ -71,14 +61,14 @@ export default function Main(newcount) {
   const groupedData = _.groupBy(categoriesdatafromreducer?.categories, 'parentId');
   
   const productcards = groupedData[1]
- 
+
 
 
   return (
     <>
-      <HeaderBootstap />
+      <HeaderBootstap/>
       {/* after header section */}
-      <div className="afterheader">
+      <div className="afterheader  " >
         <div className="sideimage">
           <div className="imgdiv">
             <img alt="" src={bagimg} className="img" />
@@ -125,14 +115,17 @@ export default function Main(newcount) {
       <div className="catcardsparent gap-2 fancyscroll mb-5" >
         {productcards?.map((e, i) => {
           return (
+           
+            <Link to="/choisecat">
             <div
+             onClick={()=>{dispatch(choiseCat(productcards[i].childId,"CHOISECAT"))}}
               className=" catcarddiv text-center justify-center   border-2 rounded "
               style={{ backgroundColor: getRandomColor(), marginTop: "-10px" ,marginLeft:"10px" }}
-              key={i}
+              
             ><div> <h3 className="text-gray-900 font-bold ">{e?.name}</h3></div>
               
               <div className=""><img src={e?.imageUrl} alt="" style={{height:"120px"}}/></div>
-            </div>
+            </div></Link>
           );
         })}
       </div>
