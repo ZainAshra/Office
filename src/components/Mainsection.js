@@ -41,6 +41,7 @@ export default function Main(newcount) {
 
   const allCardsDataObject = useSelector((state) => state.allcardsData);
 
+
   // const arr = _.map(_.toPairs(allCardsDataObject), ([key, value]) => ({
   //   key,
   //   value,
@@ -75,7 +76,7 @@ export default function Main(newcount) {
           </div>
         </div>
 
-        <div className="text">
+        <div className="text  flex flex-col">
           <div className="slogan">
             <img src={sloganimg} alt="" />
           </div>

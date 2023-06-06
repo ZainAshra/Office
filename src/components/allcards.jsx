@@ -17,6 +17,7 @@ export const Allcards = (props) => {
 
 
   const addToCartBtn = (data) => {
+    data.counter =1
     dispatch(addtocartdata('ADDTOCART',data))
   };
 

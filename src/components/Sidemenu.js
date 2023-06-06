@@ -79,7 +79,7 @@ export default function Sidemenu() {
     }
   return (
     <>
-      <div className="bodydiv " style={{zIndex:"-1"}}>
+      <div className="bodydiv " style={{zIndex:"10",position:'absolute',backgroundColor:"rgba(0,0,0,0.7)",width:"100%"}}>
         <div className="maindiv">
           <h1 className="heading">Catgories</h1>
           {pardata?.map((item, index) => {
@@ -88,7 +88,7 @@ export default function Sidemenu() {
                 onMouseEnter={() => foo(pardata[index]?.childId)}
                 onMouseLeave={() => setremoveNestedChild(false)}
                 key={index}
-                className="child"
+                className="child cursor-pointer"
               >
               <Link to="/choisecat">
                 <li onClick={()=>{getchildID(pardata[index]?.childId)}} className="childlink">{`${pardata[index].name}`}</li>

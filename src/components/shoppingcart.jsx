@@ -2,9 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import HeaderBootstap from "./mainheader";
 import { Button } from "react-bootstrap";
-
 import { addtocartdata } from "../redux/actions";
-
 import AutorenewIcon from "@mui/icons-material/Autorenew";
 import HomeIcon from "@mui/icons-material/Home";
 import CallIcon from "@mui/icons-material/Call";
@@ -18,29 +16,28 @@ const ShoppingCart = () => {
   const [cardsCount, setCardsCount] = useState(0);
   const [cardsdata, setcardsdata] = useState([]);
   const [totalbill, settotalBill] = useState(0);
+  // let allSelectedCards = useSelector((state) => _.cloneDeep(state.AddToCartReducder));
   const allSelectedCards = useSelector((state) => state.AddToCartReducder);
+  console.log(allSelectedCards, "ssss");
   const [btnbackground, setbtnbackground] = useState(false);
   const [valuecount, setValuecount] = useState(1);
+
 
   const arr = [];
   const [purchaseLimit, setpurchaseLimit] = useState(1);
 
   function sum() {
     for (var i = 0; i <= allSelectedCards?.length; i++) {
-
-     
       if (allSelectedCards[i]?.minPrice > 0) {
-        allSelectedCards[i].counter = 1;
-        arr.push(allSelectedCards[i]?.minPrice);
-      }else{
+        
+        arr.push(allSelectedCards[i]?.minPrice* allSelectedCards[i]?.counter);
+      } else {
         // console.log()
       }
-
-
     }
     const sum = _.sum(arr);
     settotalBill(sum);
-    console.log(allSelectedCards,"zain")
+    // console.log(allSelectedCards,"zain")
   }
 
   const handleClick1 = (e) => {
@@ -77,25 +74,31 @@ const ShoppingCart = () => {
     // setcardsdata(updatedItems);
     dispatch(addtocartdata("REMOVEITEM", updatedItems));
   };
-  setTimeout(() => {
-    setCardsCount(allSelectedCards?.length);
-  }, 1500);
 
-  const increaseValue = (x) => {
-    if (valuecount < x?.purchaseLimit) {
-      setValuecount(valuecount + 1);
-      let a = totalbill + x?.minPrice;
-      settotalBill(a);
-    
+  const increaseValue = (x, i) => {
+    if (x.counter < x.purchaseLimit) {
+      const index = allSelectedCards.findIndex((obj) => obj.posId === x.posId);
+      console.log(index);
+      let newdata = _.cloneDeep(allSelectedCards);
+      newdata[index].counter++;
+      console.log(newdata, "newdata");
+
+      dispatch(addtocartdata("NEWDATA", newdata));
     }
   };
 
-  const decreseValue = () => {
-    if (valuecount > 0) {
-      setValuecount(valuecount - 1);
+  const decreseValue = (x) => {
+    if (x.counter > 1) {
+      const index = allSelectedCards.findIndex((obj) => obj.posId === x.posId);
+      console.log(index);
+      let newdata = _.cloneDeep(allSelectedCards);
+      newdata[index].counter--;
+      console.log(newdata, "newdata");
+
+      dispatch(addtocartdata("NEWDATA", newdata));
     }
   };
-  
+
   return (
     <>
       <div>
@@ -230,7 +233,7 @@ const ShoppingCart = () => {
                                             <button
                                               className="btn btn-outline-secondary"
                                               type="button"
-                                              onClick={() => decreseValue()}
+                                              onClick={() => decreseValue(x)}
                                             >
                                               -
                                             </button>
@@ -238,13 +241,15 @@ const ShoppingCart = () => {
                                           <input
                                             type="text"
                                             className="form-control input-sm text-center"
-                                            value={valuecount}
+                                            value={x?.counter}
                                           />
                                           <div className="input-group-append">
                                             <button
                                               className="btn btn-outline-secondary"
                                               type="button"
-                                              onClick={() => increaseValue(x)}
+                                              onClick={() =>
+                                                increaseValue(x, i)
+                                              }
                                             >
                                               +
                                             </button>
@@ -308,7 +313,7 @@ const ShoppingCart = () => {
                   </div>
                 </div>
 
-                <div className="grid rounded-lg md:basis-1/3 lg:basis-1/3 sm:grid-cols-1  lg:mt-25 md:mt-20 border ml-5 h-40">
+                <div className="grid rounded-lg md:basis-1/3 lg:basis-1/3 sm:grid-cols-1  lg:mt-25 md:mt-20 border ml-5">
                   <div
                     className=" rounded-lg"
                     style={{ backgroundColor: "#0B223F", color: "white" }}

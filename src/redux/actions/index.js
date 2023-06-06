@@ -87,7 +87,7 @@ export const cardsData = (id, actionName) => {
 };
 
 export const addtocartdata = (type, data) => {
-  // console.log(data,"gggggg")
+  // console.log(data,type,"action")
   return (dispatch) => {
     dispatch({
       type: type,
