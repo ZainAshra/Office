@@ -135,9 +135,10 @@ export default function Main(newcount) {
       {Object.keys(allCardsDataObject).map((dt) => {
         return (
           <div>
-            <h1
+            <h1 className="font-bold text-3xl ml-2 m-2 p-2"
               style={{
-                color: "black",
+                color: "#0b223f",
+                fontFamily:"Poppins"
               }}
             >
               {dt}

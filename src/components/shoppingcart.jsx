@@ -22,15 +22,13 @@ const ShoppingCart = () => {
   const [btnbackground, setbtnbackground] = useState(false);
   const [valuecount, setValuecount] = useState(1);
 
-
   const arr = [];
   const [purchaseLimit, setpurchaseLimit] = useState(1);
 
   function sum() {
     for (var i = 0; i <= allSelectedCards?.length; i++) {
       if (allSelectedCards[i]?.minPrice > 0) {
-        
-        arr.push(allSelectedCards[i]?.minPrice* allSelectedCards[i]?.counter);
+        arr.push(allSelectedCards[i]?.minPrice * allSelectedCards[i]?.counter);
       } else {
         // console.log()
       }
@@ -149,7 +147,7 @@ const ShoppingCart = () => {
                       <div className="col-12 d-flex justify-content-end">
                         <Button
                           onClick={(e) => removeAll()}
-                          className="bg-danger m-1"
+                          className="bg-danger m-1 cursor-pointer"
                         >
                           {" "}
                           Remove All
@@ -288,7 +286,7 @@ const ShoppingCart = () => {
                                     <div className="col-2 d-flex justify-content-center">
                                       <div className="justify-content-center mt-4 ">
                                         <DeleteIcon
-                                          className="mt-5"
+                                          className="mt-5 cursor-pointer"
                                           onClick={() =>
                                             removeCart(x?.productId)
                                           }

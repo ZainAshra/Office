@@ -23,6 +23,7 @@ import Login from './components/login';
 import Signup from './components/signup';
 import Practice2 from './components/practice2';
 import Forgetpassword from './components/forgetpassword';
+import { Order } from './components/order';
 
 
 
@@ -71,6 +72,9 @@ function App() {
 
           <Route path="/practice2">
          <ProductDescription/>
+          </Route>
+          <Route path="/order">
+         <Order/>
           </Route>
 
 

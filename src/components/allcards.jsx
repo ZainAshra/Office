@@ -38,7 +38,7 @@ export const Allcards = (props) => {
           style={{ border: "1px solid lightgrey", borderRadius: "14px" }}
           variant="top"
           src={props.image}
-          className="cursor-pointer "
+          className="cursor-pointer p-4 "
         />
         </Link>
         <Card.Body>

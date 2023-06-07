@@ -27,7 +27,6 @@ import { styled } from "@mui/material/styles";
 import IconButton from "@mui/material/IconButton";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
-
 const StyledBadge = styled(Badge)(({ theme }) => ({
   "& .MuiBadge-badge": {
     right: -3,
@@ -54,14 +53,18 @@ function HeaderBootstap(props) {
           <Navbar className="b_navbar" expand="lg">
             <Container fluid>
               <Navbar.Brand href="#" className="flex flex-row">
-                <img
-                  className=""
-                  src={drawer}
-                  alt="ima"
-                  onClick={() => {
-                    setshowmainmenu(true);
-                  }}
-                />{" "}
+                <div className="mt-4 mr-4 ml-1 ">
+                  {" "}
+                  <img
+                    className=""
+                    src={drawer}
+                    alt="ima"
+                    onClick={() => {
+                      setshowmainmenu(true);
+                    }}
+                  />{" "}
+                </div>
+
                 <Link to="/">
                   <img src={companylogo} alt="" />
                 </Link>
@@ -174,7 +177,8 @@ function HeaderBootstap(props) {
       )}
 
       {showmainmenu && (
-        <div className=""
+        <div
+          className=""
           onMouseLeave={() => {
             setshowmainmenu(false);
           }}
